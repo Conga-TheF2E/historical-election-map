@@ -24,7 +24,7 @@ function Navbar() {
 
   return (
     <section
-      className="flex justify-end items-center gap-4 px-5 py-2"
+      className="flex items-center justify-end gap-4 px-5 py-2"
       ref={root}
     >
       <h1 className="title text-4xl font-semibold">Conga 全台開票地圖</h1>
