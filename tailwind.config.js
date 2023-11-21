@@ -8,6 +8,9 @@ module.exports = {
     './src/**/*.{js,jsx}',
 	],
   theme: {
+    fontFamily: {
+      'genseki': ['Genseki', 'sans-serif'],
+    },
     container: {
       center: true,
       padding: "2rem",
