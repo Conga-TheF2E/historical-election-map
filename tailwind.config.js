@@ -17,59 +17,25 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        'green300':'#70BF85',
+        'green400':'#4DAD67',
+        'green500':'#3E8952',
+        'green600':'#2C5E39',
+        'blue300':'#536ECE',
+        'blue300':'#294AC1',
+        'blue300':'#2540A2',
+        'blue300':'#152A77',
+        'orange500':'#D08871',
+        'gray100':'#D3D3D3',
+        'gray900':'#282828',
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
+      fontFamily:{
+        'GenSekiGothic-B':'Genseki gothic TW-B',
+        'GenSekiGothic-H':'Genseki gothic TW-H',
+        'GenSekiGothic-L':'Genseki gothic TW-L',
+        'GenSekiGothic-M':'Genseki gothic TW-M',
+        'GenSekiGothic-R':'Genseki gothic TW-R',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
