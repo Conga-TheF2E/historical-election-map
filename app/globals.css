@@ -23,7 +23,12 @@
   src: url("/font/GenSekiGothic-R.ttc");
 }
 @font-face {
-  font-family: "m-plus-1p";
+  font-family: "m-plus-1p-b";
   src: url("/font/MPLUS1p-Black.ttc");
   weight: 900;
+}
+@font-face {
+  font-family: "m-plus-1p-m";
+  src: url("/font/MPLUS1p-Medium.ttc");
+  weight: 500;
 }
