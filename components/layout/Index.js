@@ -1,12 +1,10 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { gsap } from "gsap/dist/gsap";
 
-function Index({ enteredSecondPage, setEnteredSecondPage }) {
-  const root = useRef(null);
-
+function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
   const hamburgerHandler = () => {
-    if (screen.width > 1025) return "/img/hamburger.svg";
+    if (screenLevel === "xl") return "/img/hamburger.svg";
     return "/img/hamburger-white.svg";
   };
   console.log(hamburgerHandler());
@@ -14,7 +12,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage }) {
     setEnteredSecondPage(true);
   };
   useEffect(() => {
-    if (screen.width < 1025) return;
+    if (screenLevel !== "xl") return;
     if (enteredSecondPage) {
       gsap.to("#year", { y: "-300px", opacity: 0 });
       gsap.to("#navTitle", { x: "-860px" });
@@ -34,8 +32,8 @@ function Index({ enteredSecondPage, setEnteredSecondPage }) {
     }
   }, [enteredSecondPage]);
   return (
-    <section ref={root}>
-      <div className="r-0 fixed z-50 flex w-full items-center justify-between gap-4 bg-gray900 py-[22px] pl-8 pr-11 xl:left-1/2 xl:w-[1320px] xl:-translate-x-1/2 xl:items-center xl:justify-end xl:bg-transparent xl:pt-9">
+    <>
+      <div className="r-0 fixed z-40 flex w-full items-center justify-between gap-4 bg-gray900 py-[22px] pl-8 pr-11 xl:left-1/2 xl:w-[1320px] xl:-translate-x-1/2 xl:items-center xl:justify-end xl:bg-transparent xl:pt-9">
         <h1
           id="navTitle"
           className="title right-[100px] whitespace-nowrap text-4xl font-semibold leading-9 text-gray100 xl:absolute xl:text-gray900"
@@ -52,7 +50,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage }) {
         />
       </div>
       <div className="relative mx-auto h-screen w-[768px] text-gray900 xl:w-[1320px]">
-        <div className="absolute bottom-[230px] right-8 xl:left-0 xl:top-7">
+        <div className="absolute bottom-[230px] right-8 z-0 xl:left-0 xl:top-7">
           <h1
             id="year"
             className="block text-[150px] font-black leading-[162px] xl:text-[215px]"
@@ -133,7 +131,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage }) {
           總統大選
         </h1>
       </div>
-    </section>
+    </>
   );
 }
 
