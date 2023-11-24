@@ -3,22 +3,32 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Genseki gothic TW-B';
-  src: url(../public/font/GenSekiGothic-B.ttc);
+  font-family: "Genseki gothic TW-B";
+  src: url("/font/GenSekiGothic-B.ttc");
 }
 @font-face {
-  font-family: 'Genseki gothic TW-H';
-  src: url(../public/font/GenSekiGothic-H.ttc);
+  font-family: "Genseki gothic TW-H";
+  src: url("/font/GenSekiGothic-H.ttc");
 }
 @font-face {
-  font-family: 'Genseki gothic TW-L';
-  src: url(../public/font/GenSekiGothic-L.ttc);
+  font-family: "Genseki gothic TW-L";
+  src: url("/font/GenSekiGothic-L.ttc");
 }
 @font-face {
-  font-family: 'Genseki gothic TW-M';
-  src: url(../public/font/GenSekiGothic-M.ttc);
+  font-family: "Genseki gothic TW-M";
+  src: url("/font/GenSekiGothic-M.ttc");
 }
 @font-face {
-  font-family: 'Genseki gothic TW-R';
-  src: url(../public/font/GenSekiGothic-R.ttc);
+  font-family: "Genseki gothic TW-R";
+  src: url("/font/GenSekiGothic-R.ttc");
+}
+@font-face {
+  font-family: "m-plus-1p-b";
+  src: url("/font/MPLUS1p-Black.ttc");
+  weight: 900;
+}
+@font-face {
+  font-family: "m-plus-1p-m";
+  src: url("/font/MPLUS1p-Medium.ttc");
+  weight: 500;
 }
