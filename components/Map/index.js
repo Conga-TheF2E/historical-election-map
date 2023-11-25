@@ -1,7 +1,12 @@
 "use client";
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import Script from "next/script";
 import D3Map from "./D3Map.js";
+
+const mapPositionMode = {
+  common: "top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 ",
+  xl: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
+  md: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
+};
 
 function Map({ screenLevel, enteredSecondPage }) {
   const [changeCssPosition, setChangeCssPosition] = useState(false);
@@ -29,16 +34,15 @@ function Map({ screenLevel, enteredSecondPage }) {
       return {
         width: 550,
         height: window?.innerHeight - 84 || 650,
-        mr: 20,
+        mr: -90,
         mt: 84,
-        top: 45,
+        top: 110,
         size: "md",
       };
     } else {
       return {
         width: 300,
         height: window?.innerHeight - 84 || 500,
-        mr: 20,
         mt: 84,
         size: "sm",
       };
@@ -80,12 +84,6 @@ function Map({ screenLevel, enteredSecondPage }) {
     [screenLevel]
   );
 
-  const mapPositionMode = {
-    common: "top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 ",
-    xl: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
-    md: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
-  };
-
   return (
     <section
       className={`absolute left-0 top-0  h-screen w-screen overflow-hidden ${
@@ -93,7 +91,7 @@ function Map({ screenLevel, enteredSecondPage }) {
       }`}
     >
       <div
-        className={`container relative h-screen transform duration-150 ease-in will-change-transform`}
+        className={`relative h-screen w-screen transform duration-150 ease-in will-change-transform xl:container xl:w-auto`}
         style={{
           transform: `translate(${transformPosition.dx}px, ${transformPosition.dy}px) scale(${transformPosition.scale})`,
         }}

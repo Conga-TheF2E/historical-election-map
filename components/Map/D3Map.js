@@ -8,14 +8,16 @@ import cityCenter from "@/public/map/city-center.json";
 const getMercatorScale = () => {
   if (typeof window === "undefined") return 0;
   const w = window.innerWidth;
-  if (w > 1440) {
+  const h = window.innerHeight;
+
+  if (w > 1600) {
     return 15000;
-  } else if (w <= 1440 && w > 768) {
+  } else if (w > 1200) {
     return 12000;
-  } else if (w <= 768 && w > 480) {
-    return 9000;
+  } else if (w > 700 && h > 800) {
+    return 10000;
   } else {
-    return 7000;
+    return 8000;
   }
 };
 
@@ -84,34 +86,19 @@ export default React.memo(function Map({
             currentCityCenter.latitude,
           ]);
 
-          const scale = isMobile ? 1.7 : 1;
+          const scale = isMobile ? 1.1 : 1;
           const dx = isMobile ? -(x - width / 2) * scale : 0;
-          const dy = isMobile ? -(y - height / 2) * scale : 0;
+          const dy = isMobile ? -(y - height / 2) * scale - 90 : 0; // 多向上移動 50px
 
           onCityClick({ dx, dy, scale });
 
-          const classNameRegExp = /^(fill-|hover:)/g;
           // 修改除被点击路径外其他路径元素的类
 
           d3.selectAll("path").each(function () {
-            let shouldSkip = false;
             const currentPath = d3.select(this);
             currentPath.classed("hover:opacity-50", false);
 
             if (currentPath.node().id !== `city${d.properties.COUNTYCODE}`) {
-              // const classes = currentPath.attr("class").split(" ");
-              // const classesToRemove = classes.filter((className) => {
-              //   if (className === "fill-gray-100") {
-              //     shouldSkip = true;
-              //   }
-              //   return className.match(classNameRegExp);
-              // });
-              // if (shouldSkip) return;
-              // classesToRemove.forEach((className) => {
-              //   currentPath.classed(className, false);
-              // });
-              // currentPath.classed("fill-gray-100", true);
-
               const fillColor = currentPath
                 .attr("class")
                 .match(/\bfill-\S+-\d+\b/g);
@@ -120,15 +107,6 @@ export default React.memo(function Map({
                 currentPath.classed("fill-gray-100", true);
               }
             } else {
-              // const classes = currentPath.attr("class").split(" ");
-              // const classesToRemove = classes.filter((className) =>
-              //   className.match(classNameRegExp)
-              // );
-              // classesToRemove.forEach((className) => {
-              //   currentPath.classed(className, false);
-              // });
-              // currentPath.classed(getRandomColor(), true);
-
               const fillColor = currentPath
                 .attr("class")
                 .match(/\bfill-\S+-\d+\b/g);
