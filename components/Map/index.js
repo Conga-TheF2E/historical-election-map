@@ -3,68 +3,51 @@ import React, { useState, useCallback, useEffect, useRef } from "react";
 import Script from "next/script";
 import D3Map from "./D3Map.js";
 
-const svgSetting = {
-  xl: (() => {
-    if (typeof window !== "undefined") {
-      return {
-        width: 660,
-        height: window.innerHeight,
-        px: 40,
-        size: "xl",
-      };
-    } else {
-      // 在非瀏覽器環境下提供一個預設值
-      return {
-        width: 660,
-        height: 750,
-        size: "xl",
-      };
-    }
-  })(),
-  md: (() => {
-    if (typeof window !== "undefined") {
-      return {
-        width: 550,
-        height: window.innerHeight,
-        px: 20,
-        size: "md",
-      };
-    } else {
-      // 在非瀏覽器環境下提供一個預設值
-      return {
-        width: 550,
-        height: 650,
-        size: "md",
-      };
-    }
-  })(),
-  sm: (() => {
-    if (typeof window !== "undefined") {
-      return {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        px: 0,
-        size: "sm",
-      };
-    } else {
-      // 在非瀏覽器環境下提供一個預設值
-      return {
-        width: 300, // 例如：預設寬度為300
-        height: 400, // 預設高度為400
-        size: "sm",
-      };
-    }
-  })(),
-};
-
 function Map({ screenLevel, enteredSecondPage }) {
-  const init = useRef(true);
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
     dy: 20,
     scale: 0.75,
   });
+  const [svgSize, setSvgSize] = useState({
+    width: 660,
+    height: 750,
+    mr: 60,
+    size: "xl",
+  });
+
+  const svgSetting = useCallback((currentScreenLevel) => {
+    if (currentScreenLevel === "xl") {
+      return {
+        width: 660,
+        height: window?.innerHeight || 750,
+        mr: 60,
+        size: "xl",
+      };
+    } else if (currentScreenLevel === "md") {
+      return {
+        width: 550,
+        height: window?.innerHeight - 84 || 650,
+        mr: 20,
+        mt: 84,
+        top: 45,
+        size: "md",
+      };
+    } else {
+      return {
+        width: 300,
+        height: window?.innerHeight - 84 || 500,
+        mr: 20,
+        mt: 84,
+        size: "sm",
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    setSvgSize(svgSetting(screenLevel));
+  }, [screenLevel]);
 
   useEffect(() => {
     // 進入地圖模式會回到原本的位置
@@ -73,6 +56,10 @@ function Map({ screenLevel, enteredSecondPage }) {
       dy: enteredSecondPage ? 0 : 20,
       scale: enteredSecondPage ? 1 : 0.75,
     });
+
+    if (!enteredSecondPage) {
+      setChangeCssPosition(false);
+    }
   }, [enteredSecondPage]);
 
   const handleCityClick = useCallback(
@@ -80,11 +67,24 @@ function Map({ screenLevel, enteredSecondPage }) {
       if (screenLevel === "sm") {
         setTransformPosition(position);
       } else {
+        if (screenLevel === "md") {
+          setTransformPosition({
+            dx: 0,
+            dy: 0,
+            scale: 0.9,
+          });
+        }
         setChangeCssPosition(true);
       }
     },
     [screenLevel]
   );
+
+  const mapPositionMode = {
+    common: "top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 ",
+    xl: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
+    md: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
+  };
 
   return (
     <section
@@ -93,19 +93,33 @@ function Map({ screenLevel, enteredSecondPage }) {
       }`}
     >
       <div
-        className={`container flex transform  items-center duration-300 ease-in will-change-transform`}
+        className={`container relative h-screen transform duration-150 ease-in will-change-transform`}
         style={{
           transform: `translate(${transformPosition.dx}px, ${transformPosition.dy}px) scale(${transformPosition.scale})`,
-          padding: `0 ${svgSetting[screenLevel].px}px`,
-          justifyContent: changeCssPosition ? "flex-end" : "center",
         }}
       >
-        <D3Map
-          svgSize={svgSetting[screenLevel]}
-          onCityClick={handleCityClick}
-        />
+        <section
+          className={`
+           will-change-right-top-transform absolute top-1/2 h-screen -translate-y-1/2 transition-all delay-75 duration-100 ease-in
+            ${
+              changeCssPosition
+                ? mapPositionMode[screenLevel]
+                : mapPositionMode.common
+            }
+        `}
+          style={{
+            top: changeCssPosition && `calc( 50% - ${svgSize.top || 0}px )`,
+            marginRight: changeCssPosition && `${svgSize.mr || 0}px`,
+            marginTop: `${svgSize.mt || 0}px`,
+          }}
+        >
+          <D3Map
+            svgSize={svgSize}
+            onCityClick={handleCityClick}
+            enteredSecondPage={enteredSecondPage}
+          />
+        </section>
       </div>
-      <Script src="https://unpkg.com/topojson@3" />
     </section>
   );
 }

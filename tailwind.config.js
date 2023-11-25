@@ -40,6 +40,10 @@ module.exports = {
         "GenSekiGothic-R": "Genseki gothic TW-R",
         "M-PLUS-1p-B": "M PLUS 1p-B",
       },
+      willChange: {
+        "right-top-transform": "right, top, transform",
+        fill: "fill",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
