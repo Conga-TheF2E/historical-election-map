@@ -19,7 +19,15 @@ const getMercatorScale = () => {
   }
 };
 
-export default React.memo(function Map({ svgSize, onCityClick }) {
+export default React.memo(function Map({
+  svgSize,
+  onCityClick,
+  enteredSecondPage,
+}) {
+  function getRandomColor() {
+    return Math.random() > 0.5 ? "fill-blue-500" : "fill-green-500";
+  }
+
   useEffect(() => {
     if (!svgSize) return;
     const { width, height, size } = svgSize;
@@ -56,12 +64,9 @@ export default React.memo(function Map({ svgSize, onCityClick }) {
 
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
-      function getRandomColor() {
-        return Math.random() > 0.5 ? "fill-blue-500" : "fill-green-500";
-      }
       function pathClass() {
         const color = getRandomColor();
-        return `${color}  hover:opacity-50 duration-300 will-change-[opacity] will-change-[transition] transition-[fill] ease-out`;
+        return ` hover:opacity-50 ${color} will-change-fill delay-200 during-150 transition ease-out`;
       }
 
       countyPaths
@@ -91,34 +96,64 @@ export default React.memo(function Map({ svgSize, onCityClick }) {
           d3.selectAll("path").each(function () {
             let shouldSkip = false;
             const currentPath = d3.select(this);
+            currentPath.classed("hover:opacity-50", false);
 
             if (currentPath.node().id !== `city${d.properties.COUNTYCODE}`) {
-              const classes = currentPath.attr("class").split(" ");
-              const classesToRemove = classes.filter((className) => {
-                if (className === "fill-gray-100") {
-                  shouldSkip = true;
-                }
-                return className.match(classNameRegExp);
-              });
-              if (shouldSkip) return;
-              classesToRemove.forEach((className) => {
-                currentPath.classed(className, false);
-              });
-              currentPath.classed("fill-gray-100", true);
+              // const classes = currentPath.attr("class").split(" ");
+              // const classesToRemove = classes.filter((className) => {
+              //   if (className === "fill-gray-100") {
+              //     shouldSkip = true;
+              //   }
+              //   return className.match(classNameRegExp);
+              // });
+              // if (shouldSkip) return;
+              // classesToRemove.forEach((className) => {
+              //   currentPath.classed(className, false);
+              // });
+              // currentPath.classed("fill-gray-100", true);
+
+              const fillColor = currentPath
+                .attr("class")
+                .match(/\bfill-\S+-\d+\b/g);
+              if (fillColor?.[0] && fillColor[0] !== "fill-gray-100") {
+                currentPath.classed(fillColor[0], false);
+                currentPath.classed("fill-gray-100", true);
+              }
             } else {
-              const classes = currentPath.attr("class").split(" ");
-              const classesToRemove = classes.filter((className) =>
-                className.match(classNameRegExp)
-              );
-              classesToRemove.forEach((className) => {
-                currentPath.classed(className, false);
-              });
-              currentPath.classed(getRandomColor(), true);
+              // const classes = currentPath.attr("class").split(" ");
+              // const classesToRemove = classes.filter((className) =>
+              //   className.match(classNameRegExp)
+              // );
+              // classesToRemove.forEach((className) => {
+              //   currentPath.classed(className, false);
+              // });
+              // currentPath.classed(getRandomColor(), true);
+
+              const fillColor = currentPath
+                .attr("class")
+                .match(/\bfill-\S+-\d+\b/g);
+              if (fillColor?.[0] && fillColor[0] === "fill-gray-100") {
+                currentPath.classed(fillColor[0], false);
+                currentPath.classed(getRandomColor(), true);
+              }
             }
           });
         });
     });
   }, [svgSize]);
+
+  useEffect(() => {
+    if (enteredSecondPage) return;
+    // refill paths
+    d3.selectAll("path").each(function () {
+      const currentPath = d3.select(this);
+      const fillColor = currentPath.attr("class").match(/\bfill-\S+-\d+\b/g);
+      if (fillColor?.[0] && fillColor[0] === "fill-gray-100") {
+        currentPath.classed("fill-gray-100", false);
+        currentPath.classed(getRandomColor(), true);
+      }
+    });
+  }, [enteredSecondPage]);
 
   return (
     <>
