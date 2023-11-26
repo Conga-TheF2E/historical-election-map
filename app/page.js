@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden bg-gray100 font-GenSekiGothic-R">
-      {/* <Map screenLevel={screenLevel} enteredSecondPage={enteredSecondPage} /> */}
+      <Map screenLevel={screenLevel} enteredSecondPage={enteredSecondPage} />
       <Index
         enteredSecondPage={enteredSecondPage}
         setEnteredSecondPage={setEnteredSecondPage}
