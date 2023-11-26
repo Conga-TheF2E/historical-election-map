@@ -33,7 +33,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#navTitle", { x: "-860px" });
           gsap.to("#TotalVotes", { x: "-600px", opacity: 0 });
           gsap.to("#description", { opacity: 0 });
-          gsap.to("#enter", { opacity: 0, display: "none" });
+          gsap.to("#enter", { opacity: 0 });
           gsap.to("#title", { y: "300px", opacity: 0 });
           gsap.to("#buttons", { x: "600px", opacity: 0 });
         } else {
@@ -41,7 +41,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#navTitle", { x: "0" });
           gsap.to("#TotalVotes", { x: "0", opacity: 1 });
           gsap.to("#description", { opacity: 1 });
-          gsap.to("#enter", { opacity: 1, display: "block" });
+          gsap.to("#enter", { opacity: 1 });
           gsap.to("#title", { y: "0", opacity: 1 });
           gsap.to("#buttons", { x: "0", opacity: 1 });
         }
@@ -52,14 +52,14 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#year", { x: "600px", opacity: 0 });
           gsap.to("#TotalVotes", { opacity: 0 });
           gsap.to("#description", { x: "-600px", opacity: 0 });
-          gsap.to("#enter", { opacity: 0, display: "none" });
+          gsap.to("#enter", { opacity: 0 });
           gsap.to("#title", { y: "300px", opacity: 0 });
           gsap.to("#buttons", { opacity: 0 });
         } else {
           gsap.to("#year", { x: "0", opacity: 1 });
           gsap.to("#TotalVotes", { opacity: 1 });
           gsap.to("#description", { x: "0", opacity: 1 });
-          gsap.to("#enter", { opacity: 1, display: "block" });
+          gsap.to("#enter", { opacity: 1 });
           gsap.to("#title", { y: "0", opacity: 1 });
           gsap.to("#buttons", { opacity: 1 });
         }
@@ -69,16 +69,18 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#year", { opacity: 0 });
           gsap.to("#TotalVotes", { opacity: 0 });
           gsap.to("#description", { opacity: 0 });
-          gsap.to("#enter", { opacity: 0, display: "none" });
+          gsap.to("#enter", { opacity: 0 });
           gsap.to("#title", { opacity: 0 });
           gsap.to("#buttons", { opacity: 0 });
+          gsap.to("#inTitle", { opacity: 1 });
         } else {
           gsap.to("#year", { opacity: 1 });
           gsap.to("#TotalVotes", { opacity: 1 });
           gsap.to("#description", { opacity: 1 });
-          gsap.to("#enter", { opacity: 1, display: "block" });
+          gsap.to("#enter", { opacity: 1 });
           gsap.to("#title", { opacity: 1 });
           gsap.to("#buttons", { opacity: 1 });
+          gsap.to("#inTitle", { opacity: 0 });
         }
         break;
     }
@@ -135,53 +137,12 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           ＞ 進入開票地圖 ＜
         </div>
 
-        {/* <div
-          id="buttons"
-          className="absolute left-4 top-[148px] flex justify-between gap-3 xl:left-auto xl:right-0 xl:top-1/2 xl:h-full xl:max-h-[372px] xl:-translate-y-1/2 xl:flex-col xl:gap-0"
+        <div
+          id="inTitle"
+          className="absolute left-[15px] top-[58px] text-[22px] font-bold opacity-0 md:hidden"
         >
-          <div className=" duration-10 group relative cursor-pointer bg-gray900 p-4 text-gray100 duration-100 ease-linear hover:bg-white hover:text-gray900 xl:px-[54px] xl:py-[14px] xl:pl-[44px]">
-            <div className="absolute left-6 top-[30px] hidden h-1 w-2.5 bg-gray100 group-hover:bg-gray900 xl:block"></div>
-            <div className="text-[40px] font-semibold leading-none xl:text-[35px]">
-              {screenLevel !== "xl" ? "宋" : "宋楚瑜"}
-            </div>
-            <div
-              className="hidden text-lg xl:block"
-              style={{ fontFamily: "m-plus-1p-m" }}
-            >
-              James C.Y. soong
-            </div>
-          </div>
-          <div className="duration-10 group relative cursor-pointer bg-gray900 p-4 text-gray100 duration-100 ease-linear hover:bg-white hover:text-gray900 xl:px-[54px] xl:py-[14px] xl:pl-[44px]">
-            <div className="absolute left-6 top-[30px] hidden h-1 w-2.5 bg-gray100 group-hover:bg-gray900 xl:block"></div>
-            <div className="text-[40px] font-semibold leading-none xl:text-[35px]">
-              {screenLevel !== "xl" ? "蔡" : "蔡英文"}
-            </div>
-            <div
-              className="hidden text-lg xl:block"
-              style={{ fontFamily: "m-plus-1p-m" }}
-            >
-              Tsai Ing-wen
-            </div>
-          </div>
-          <div className="duration-10 group relative cursor-pointer bg-gray900 p-4 text-gray100 duration-100 ease-linear hover:bg-white hover:text-gray900 xl:px-[54px] xl:py-[14px] xl:pl-[44px]">
-            <div className="absolute left-6 top-[30px] hidden h-1 w-2.5 bg-gray100 group-hover:bg-gray900 xl:block"></div>
-            <div className="text-[40px] font-semibold leading-none xl:text-[35px]">
-              {screenLevel !== "xl" ? "韓" : "韓國瑜"}
-            </div>
-            <div
-              className="hidden text-lg xl:block"
-              style={{ fontFamily: "m-plus-1p-m" }}
-            >
-              Daniel Han
-            </div>
-          </div>
-          <div className="absolute top-[-44px] flex flex-col items-center xl:-top-[98px] xl:left-1/2 xl:-translate-x-1/2">
-            <div className="mb-5 w-auto whitespace-nowrap text-[24px] font-semibold">
-              候選人得票情形
-            </div>
-            <img className="hidden xl:block" src="/img/caret-down.svg" alt="" />
-          </div>
-        </div> */}
+          2020年 總統大選
+        </div>
         <div
           id="buttons"
           className="absolute left-[15px] top-[86px] flex justify-between gap-3 md:left-4 md:top-[148px] xl:left-auto xl:right-0 xl:top-1/2 xl:h-full xl:max-h-[372px] xl:-translate-y-1/2 xl:flex-col xl:gap-0"
@@ -199,7 +160,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
         </div>
         <h1
           id="title"
-          className="absolute bottom-[18px] w-full text-center text-[87px] font-black leading-none md:text-[177px] xl:bottom-[26px] xl:right-0 xl:w-auto xl:text-[163px]"
+          className="absolute bottom-[6px] w-full text-center text-[87px] font-black leading-none md:bottom-[18px] md:text-[177px] xl:bottom-[26px] xl:right-0 xl:w-auto xl:text-[163px]"
           style={{ fontFamily: "m-plus-1p-b" }}
         >
           總統大選
