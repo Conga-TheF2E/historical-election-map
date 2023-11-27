@@ -19,8 +19,8 @@ export default function handler(req, res) {
           enName: "James C.Y. soong",
         },
       ],
-      allVotes: 15761271,
-      vitePercentage: 0.75,
+      allVotes: 114464571,
+      vitePercentage: "74.9%",
     });
   } else {
     res.status(400).json({ message: "Hello from Next.js!" });
