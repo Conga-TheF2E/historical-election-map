@@ -85,9 +85,14 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
         break;
     }
   }, [enteredSecondPage]);
+  useEffect(() => {
+    fetch("/api/voteDetail?year=2020")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  });
   return (
     <>
-      <div className="r-0 fixed z-10 flex w-full items-center justify-between gap-4 bg-gray900 px-[18px] py-3 py-[22px] md:pl-8 md:pr-11 xl:left-1/2 xl:w-[1320px] xl:-translate-x-1/2 xl:items-center xl:justify-end xl:bg-transparent xl:pt-9">
+      <div className="r-0 fixed z-10 flex w-full items-center justify-between gap-4 bg-gray900 px-[18px] py-3 md:pl-8 md:pr-11 xl:left-1/2 xl:w-[1320px] xl:-translate-x-1/2 xl:items-center xl:justify-end xl:bg-transparent xl:py-[22px] xl:pt-9">
         <h1
           id="navTitle"
           className="title right-[100px] whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:text-4xl xl:absolute xl:text-gray900"
@@ -131,7 +136,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
         </div>
         <div
           id="enter"
-          className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap bg-gray900 px-8 py-3 text-base font-black text-gray100 duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] xl:hover:bg-white xl:hover:text-gray900"
+          className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap bg-gray900 px-8 py-3 font-GenSekiGothic-H text-base font-black text-gray100 duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] xl:hover:bg-white xl:hover:text-gray900"
           onClick={handleMapButtonClick}
         >
           ＞ 進入開票地圖 ＜

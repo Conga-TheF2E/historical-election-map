@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { debounce } from "lodash";
 
 import Navbar from "@/components/layout/Navbar";
@@ -13,7 +13,8 @@ const sizeSetting = {
 
 export default function Home() {
   const [enteredSecondPage, setEnteredSecondPage] = useState(false);
-  const [screenLevel, setScreenLevel] = useState("xl");
+  const [screenLevel, setScreenLevel] = useState(null);
+  const [cityCode, setCityCode] = useState("");
 
   const detectWindowWidth = () => {
     const w = window.innerWidth;
@@ -26,8 +27,10 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setScreenLevel(detectWindowWidth());
+  });
+  useEffect(() => {
     const handleResize = debounce(() => {
       setScreenLevel(detectWindowWidth());
     }, 200);
@@ -40,7 +43,7 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden bg-gray100 font-GenSekiGothic-R">
-      <Map screenLevel={screenLevel} enteredSecondPage={enteredSecondPage} />
+      {/* <Map screenLevel={screenLevel} enteredSecondPage={enteredSecondPage} /> */}
       <Index
         enteredSecondPage={enteredSecondPage}
         setEnteredSecondPage={setEnteredSecondPage}
