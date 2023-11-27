@@ -1,0 +1,486 @@
+[
+  {
+    "cityCode": "M",
+    "name": "南投縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 13315,
+        "percentage": "4.45",
+        "compare": "-27.63"
+      },
+      "中國國民黨": {
+        "num": 133791,
+        "percentage": "44.72",
+        "compare": "-7.51"
+      },
+      "民主進步黨": {
+        "num": 152046,
+        "percentage": "50.83",
+        "compare": "35.15"
+      },
+      "total": 299152
+    }
+  },
+  {
+    "cityCode": "I",
+    "name": "嘉義市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 6204,
+        "percentage": "3.84",
+        "compare": "-24.11"
+      },
+      "中國國民黨": {
+        "num": 56269,
+        "percentage": "34.79",
+        "compare": "-25.07"
+      },
+      "民主進步黨": {
+        "num": 99265,
+        "percentage": "61.37",
+        "compare": "49.18"
+      },
+      "total": 161738
+    }
+  },
+  {
+    "cityCode": "Q",
+    "name": "嘉義縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 11138,
+        "percentage": "3.62",
+        "compare": "-19.76"
+      },
+      "中國國民黨": {
+        "num": 98810,
+        "percentage": "32.16",
+        "compare": "-33.21"
+      },
+      "民主進步黨": {
+        "num": 197342,
+        "percentage": "64.22",
+        "compare": "52.97"
+      },
+      "total": 307290
+    }
+  },
+  {
+    "cityCode": "C",
+    "name": "基隆市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 11878,
+        "percentage": "5.25",
+        "compare": "-30.04"
+      },
+      "中國國民黨": {
+        "num": 99360,
+        "percentage": "43.92",
+        "compare": "-4.30"
+      },
+      "民主進步黨": {
+        "num": 114966,
+        "percentage": "50.82",
+        "compare": "34.32"
+      },
+      "total": 226204
+    }
+  },
+  {
+    "cityCode": "G",
+    "name": "宜蘭縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 10739,
+        "percentage": "3.91",
+        "compare": "-21.47"
+      },
+      "中國國民黨": {
+        "num": 90010,
+        "percentage": "32.80",
+        "compare": "-29.26"
+      },
+      "民主進步黨": {
+        "num": 173657,
+        "percentage": "63.28",
+        "compare": "50.73"
+      },
+      "total": 274406
+    }
+  },
+  {
+    "cityCode": "T",
+    "name": "屏東縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 14021,
+        "percentage": "2.74",
+        "compare": "-24.25"
+      },
+      "中國國民黨": {
+        "num": 179353,
+        "percentage": "35.10",
+        "compare": "-28.39"
+      },
+      "民主進步黨": {
+        "num": 317676,
+        "percentage": "62.16",
+        "compare": "52.64"
+      },
+      "total": 511050
+    }
+  },
+  {
+    "cityCode": "N",
+    "name": "彰化縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 35060,
+        "percentage": "4.59",
+        "compare": "-24.21"
+      },
+      "中國國民黨": {
+        "num": 291835,
+        "percentage": "38.24",
+        "compare": "-18.23"
+      },
+      "民主進步黨": {
+        "num": 436336,
+        "percentage": "57.17",
+        "compare": "42.44"
+      },
+      "total": 763231
+    }
+  },
+  {
+    "cityCode": "F",
+    "name": "新北市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 112620,
+        "percentage": "4.57",
+        "compare": "-28.77"
+      },
+      "中國國民黨": {
+        "num": 959631,
+        "percentage": "38.91",
+        "compare": "-15.88"
+      },
+      "民主進步黨": {
+        "num": 1393936,
+        "percentage": "56.52",
+        "compare": "44.65"
+      },
+      "total": 2466187
+    }
+  },
+  {
+    "cityCode": "O",
+    "name": "新竹市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 14103,
+        "percentage": "5.40",
+        "compare": "-27.02"
+      },
+      "中國國民黨": {
+        "num": 102725,
+        "percentage": "39.34",
+        "compare": "-11.88"
+      },
+      "民主進步黨": {
+        "num": 144274,
+        "percentage": "55.26",
+        "compare": "38.91"
+      },
+      "total": 261102
+    }
+  },
+  {
+    "cityCode": "J",
+    "name": "新竹縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 18435,
+        "percentage": "5.67",
+        "compare": "-29.61"
+      },
+      "中國國民黨": {
+        "num": 154224,
+        "percentage": "47.45",
+        "compare": "4.93"
+      },
+      "民主進步黨": {
+        "num": 152380,
+        "percentage": "46.88",
+        "compare": "24.69"
+      },
+      "total": 325039
+    }
+  },
+  {
+    "cityCode": "H",
+    "name": "桃園市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 63132,
+        "percentage": "4.82",
+        "compare": "-29.57"
+      },
+      "中國國民黨": {
+        "num": 529749,
+        "percentage": "40.40",
+        "compare": "-10.63"
+      },
+      "民主進步黨": {
+        "num": 718260,
+        "percentage": "54.78",
+        "compare": "40.19"
+      },
+      "total": 1311141
+    }
+  },
+  {
+    "cityCode": "X",
+    "name": "澎湖縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 2583,
+        "percentage": "5.07",
+        "compare": "-24.41"
+      },
+      "中國國民黨": {
+        "num": 20911,
+        "percentage": "41.08",
+        "compare": "-9.73"
+      },
+      "民主進步黨": {
+        "num": 27410,
+        "percentage": "53.85",
+        "compare": "34.14"
+      },
+      "total": 50904
+    }
+  },
+  {
+    "cityCode": "B",
+    "name": "臺中市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 84800,
+        "percentage": "4.99",
+        "compare": "-24.83"
+      },
+      "中國國民黨": {
+        "num": 646366,
+        "percentage": "38.06",
+        "compare": "-16.95"
+      },
+      "民主進步黨": {
+        "num": 967304,
+        "percentage": "56.95",
+        "compare": "41.78"
+      },
+      "total": 1698470
+    }
+  },
+  {
+    "cityCode": "A",
+    "name": "臺北市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 70769,
+        "percentage": "4.34",
+        "compare": "-33.15"
+      },
+      "中國國民黨": {
+        "num": 685830,
+        "percentage": "42.01",
+        "compare": "-9.95"
+      },
+      "民主進步黨": {
+        "num": 875854,
+        "percentage": "53.65",
+        "compare": "43.10"
+      },
+      "total": 1632453
+    }
+  },
+  {
+    "cityCode": "D",
+    "name": "臺南市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 41075,
+        "percentage": "3.52",
+        "compare": "-18.55"
+      },
+      "中國國民黨": {
+        "num": 339702,
+        "percentage": "29.10",
+        "compare": "-38.42"
+      },
+      "民主進步黨": {
+        "num": 786471,
+        "percentage": "67.38",
+        "compare": "56.97"
+      },
+      "total": 1167248
+    }
+  },
+  {
+    "cityCode": "V",
+    "name": "臺東縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 4163,
+        "percentage": "3.60",
+        "compare": "-41.02"
+      },
+      "中國國民黨": {
+        "num": 67413,
+        "percentage": "58.28",
+        "compare": "19.87"
+      },
+      "民主進步黨": {
+        "num": 44092,
+        "percentage": "38.12",
+        "compare": "21.16"
+      },
+      "total": 115668
+    }
+  },
+  {
+    "cityCode": "U",
+    "name": "花蓮縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 6869,
+        "percentage": "3.71",
+        "compare": "-44.01"
+      },
+      "中國國民黨": {
+        "num": 111834,
+        "percentage": "60.38",
+        "compare": "23.44"
+      },
+      "民主進步黨": {
+        "num": 66509,
+        "percentage": "35.91",
+        "compare": "20.57"
+      },
+      "total": 185212
+    }
+  },
+  {
+    "cityCode": "K",
+    "name": "苗栗縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 15222,
+        "percentage": "4.66",
+        "compare": "-32.89"
+      },
+      "中國國民黨": {
+        "num": 164345,
+        "percentage": "50.32",
+        "compare": "4.87"
+      },
+      "民主進步黨": {
+        "num": 147034,
+        "percentage": "45.02",
+        "compare": "28.02"
+      },
+      "total": 326601
+    }
+  },
+  {
+    "cityCode": "Z",
+    "name": "連江縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 188,
+        "percentage": "3.04",
+        "compare": "-65.56"
+      },
+      "中國國民黨": {
+        "num": 4776,
+        "percentage": "77.16",
+        "compare": "60.62"
+      },
+      "民主進步黨": {
+        "num": 1226,
+        "percentage": "19.81",
+        "compare": "4.95"
+      },
+      "total": 6190
+    }
+  },
+  {
+    "cityCode": "W",
+    "name": "金門縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 1636,
+        "percentage": "3.41",
+        "compare": "-62.69"
+      },
+      "中國國民黨": {
+        "num": 35948,
+        "percentage": "74.83",
+        "compare": "56.83"
+      },
+      "民主進步黨": {
+        "num": 10456,
+        "percentage": "21.77",
+        "compare": "5.87"
+      },
+      "total": 48040
+    }
+  },
+  {
+    "cityCode": "P",
+    "name": "雲林縣",
+    "voteDetail": {
+      "親民黨": {
+        "num": 15331,
+        "percentage": "3.83",
+        "compare": "-21.10"
+      },
+      "中國國民黨": {
+        "num": 138341,
+        "percentage": "34.60",
+        "compare": "-28.81"
+      },
+      "民主進步黨": {
+        "num": 246116,
+        "percentage": "61.56",
+        "compare": "49.90"
+      },
+      "total": 399788
+    }
+  },
+  {
+    "cityCode": "E",
+    "name": "高雄市",
+    "voteDetail": {
+      "親民黨": {
+        "num": 55309,
+        "percentage": "3.14",
+        "compare": "-22.86"
+      },
+      "中國國民黨": {
+        "num": 610896,
+        "percentage": "34.63",
+        "compare": "-28.76"
+      },
+      "民主進步黨": {
+        "num": 1097621,
+        "percentage": "62.23",
+        "compare": "51.63"
+      },
+      "total": 1763826
+    }
+  }
+]
