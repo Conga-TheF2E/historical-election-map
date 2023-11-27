@@ -89,6 +89,7 @@ function Map({ screenLevel, enteredSecondPage }) {
       className={`absolute left-0 top-0  h-screen w-screen overflow-hidden ${
         enteredSecondPage ? "z-20" : "z-0"
       }`}
+      style={{ filter: blur(enteredSecondPage ? 0 : 5) }}
     >
       <div
         className={`relative h-screen w-screen transform duration-150 ease-in will-change-transform xl:container xl:w-auto`}
@@ -98,7 +99,7 @@ function Map({ screenLevel, enteredSecondPage }) {
       >
         <section
           className={`
-           will-change-right-top-transform absolute top-1/2 h-screen -translate-y-1/2 transition-all delay-75 duration-100 ease-in
+           absolute top-1/2 h-screen -translate-y-1/2 transition-all delay-75 duration-100 ease-in will-change-right-top-transform
             ${
               changeCssPosition
                 ? mapPositionMode[screenLevel]
