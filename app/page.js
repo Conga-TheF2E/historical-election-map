@@ -18,6 +18,7 @@ export default function Home() {
   const [cityCode, setCityCode] = useState("");
   const [isMapLoading, setIsMapLoading] = useState(true);
   const [voteDetail, setVoteDetail] = useState(null);
+  const [cityDetail, setCityDetail] = useState(null);
 
   const detectWindowWidth = () => {
     const w = window.innerWidth;
@@ -34,10 +35,10 @@ export default function Home() {
     setScreenLevel(detectWindowWidth());
   });
   useEffect(() => {
-    fetch("/api/voteDetail?year=2020")
+    fetch("/api/cityDetail?year=2020")
       .then((res) => res.json())
       .then((data) => {
-        setVoteDetail(data);
+        setCityDetail(data);
       });
 
     const handleResize = debounce(() => {
@@ -55,7 +56,7 @@ export default function Home() {
       <Map
         screenLevel={screenLevel}
         enteredSecondPage={enteredSecondPage}
-        voteDetail={voteDetail}
+        cityDetail={cityDetail}
         setIsMapLoading={setIsMapLoading}
       />
       <Index
@@ -63,6 +64,7 @@ export default function Home() {
         setEnteredSecondPage={setEnteredSecondPage}
         screenLevel={screenLevel}
         voteDetail={voteDetail}
+        cityDetail={cityDetail}
       />
     </main>
   );

@@ -1,6 +1,6 @@
 export default function handler(req, res) {
   const { year } = req.query; // 從查詢參數中取得年份
-  if (year === "2022") {
+  if (year === "2020") {
     res.status(200).json({
       candidates: [
         {

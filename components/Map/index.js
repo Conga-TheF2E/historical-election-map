@@ -8,7 +8,7 @@ const mapPositionMode = {
   md: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
 };
 
-function Map({ screenLevel, enteredSecondPage, setIsMapLoading }) {
+function Map({ screenLevel, enteredSecondPage, setIsMapLoading, voteDetail }) {
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
@@ -115,6 +115,7 @@ function Map({ screenLevel, enteredSecondPage, setIsMapLoading }) {
             svgSize={svgSize}
             onCityClick={handleCityClick}
             enteredSecondPage={enteredSecondPage}
+            voteDetail={voteDetail}
           />
 
           {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}

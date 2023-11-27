@@ -25,9 +25,28 @@ export default React.memo(function Map({
   svgSize,
   onCityClick,
   enteredSecondPage,
+  voteDetail,
 }) {
-  function getRandomColor() {
-    return Math.random() > 0.5 ? "fill-blue-500" : "fill-green-500";
+  function setColor(percent, party) {
+    let color = "blue";
+    let level = 300;
+    if (party === "中國國民黨") {
+      color = "blue";
+    } else if (party === "民主進步黨") {
+      color = "green";
+    }
+
+    if (percent > 65) {
+      level = 600;
+    } else if (percent > 60) {
+      level = 500;
+    } else if (percent > 55) {
+      level = 400;
+    } else {
+      level = 300;
+    }
+    return `fill-${color}${level}`;
+    // return Math.random() > 0.5 ? "fill-blue-500" : "fill-green-500";
   }
 
   useEffect(() => {
@@ -67,6 +86,7 @@ export default React.memo(function Map({
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
       function pathClass() {
+        console.log({ voteDetail });
         return `fill-transparent hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out`;
       }
 
