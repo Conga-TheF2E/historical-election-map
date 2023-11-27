@@ -91,13 +91,14 @@ export default React.memo(function Map({
         const currentCity =
           cityDetail?.length > 0 &&
           cityDetail.find((city) => city.cityCode === cityID);
-        console.log(cityDetail);
-        console.log(currentCity.percentage, currentCity.party);
-        console.log(returnColor(currentCity.percentage, currentCity.party));
-        return `${returnColor(
-          currentCity.percentage,
-          currentCity.party
-        )} hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out`;
+
+        // console.log(currentCity.percentage, currentCity.party);
+        // console.log(returnColor(currentCity.percentage, currentCity.party));
+        const color = returnColor(
+          currentCity.voteDetail[currentCity.voteDetail.winner].percentage,
+          currentCity.voteDetail.winner
+        );
+        return `${color} hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out`;
       }
 
       countyPaths
@@ -143,7 +144,7 @@ export default React.memo(function Map({
                 .match(/\bfill-\S+-\d+\b/g);
               if (fillColor?.[0] && fillColor[0] === "fill-gray-100") {
                 currentPath.classed(fillColor[0], false);
-                currentPath.classed(getRandomColor(), true);
+                currentPath.classed(returnColor(), true);
               }
             }
           });
@@ -159,7 +160,7 @@ export default React.memo(function Map({
       const fillColor = currentPath.attr("class").match(/\bfill-\S+-\d+\b/g);
       if (fillColor?.[0] && fillColor[0] === "fill-gray-100") {
         currentPath.classed("fill-gray-100", false);
-        currentPath.classed(getRandomColor(), true);
+        currentPath.classed(returnColor(), true);
       }
     });
   }, [enteredSecondPage]);
