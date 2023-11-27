@@ -28,7 +28,7 @@ export default React.memo(function Map({
   cityDetail,
   setCityCode,
 }) {
-  function setColor(percent, party) {
+  function returnColor(percent, party) {
     let color = "blue";
     let level = 300;
     if (party === "中國國民黨") {
@@ -46,12 +46,13 @@ export default React.memo(function Map({
     } else {
       level = 300;
     }
-    return `fill-${color}${level}`;
+    return `fill-${color}-${level}`;
     // return Math.random() > 0.5 ? "fill-blue-500" : "fill-green-500";
   }
 
   useEffect(() => {
     if (!svgSize) return;
+    if (!cityDetail) return;
     const { width, height, size } = svgSize;
     const isMobile = size === "sm";
     const mercatorScale = getMercatorScale();
@@ -86,8 +87,17 @@ export default React.memo(function Map({
 
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
-      function pathClass() {
-        return `fill-transparent hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out`;
+      function pathClass(cityID) {
+        const currentCity =
+          cityDetail?.length > 0 &&
+          cityDetail.find((city) => city.cityCode === cityID);
+        console.log(cityDetail);
+        console.log(currentCity.percentage, currentCity.party);
+        console.log(returnColor(currentCity.percentage, currentCity.party));
+        return `${returnColor(
+          currentCity.percentage,
+          currentCity.party
+        )} hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out`;
       }
 
       countyPaths
@@ -96,7 +106,7 @@ export default React.memo(function Map({
         .attr("d", pathGenerator)
         .attr("id", (d) => "city" + d.properties.COUNTYCODE)
         .attr("stroke", "black")
-        .attr("class", () => pathClass())
+        .attr("class", (d) => pathClass(d.properties.COUNTYID))
         .on("click", function (event, d) {
           const currentCityCenter = cityCenter[d.properties.COUNTYID];
           console.log(d.properties.COUNTYID);
@@ -139,7 +149,7 @@ export default React.memo(function Map({
           });
         });
     });
-  }, [svgSize]);
+  }, [svgSize, cityDetail]);
 
   useEffect(() => {
     if (enteredSecondPage) return;

@@ -31,6 +31,18 @@ module.exports = {
         orange500: "#D08871",
         gray100: "#D3D3D3",
         gray900: "#282828",
+        green: {
+          300: "#70BF85",
+          400: "#4DAD67",
+          500: "#3E8952",
+          600: "#2C5E39",
+        },
+        blue: {
+          300: "#536ECE",
+          400: "#294AC1",
+          500: "#2540A2",
+          600: "#152A77",
+        },
       },
       fontFamily: {
         "GenSekiGothic-B": "Genseki gothic TW-B",
