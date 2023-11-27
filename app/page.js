@@ -15,6 +15,8 @@ export default function Home() {
   const [enteredSecondPage, setEnteredSecondPage] = useState(false);
   const [screenLevel, setScreenLevel] = useState(null);
   const [cityCode, setCityCode] = useState("");
+  const [isMapLoading, setIsMapLoading] = useState(true);
+  const [voteDetail, setVoteDetail] = useState(null);
 
   const detectWindowWidth = () => {
     const w = window.innerWidth;
@@ -31,6 +33,12 @@ export default function Home() {
     setScreenLevel(detectWindowWidth());
   });
   useEffect(() => {
+    fetch("/api/voteDetail?year=2020")
+      .then((res) => res.json())
+      .then((data) => {
+        setVoteDetail(data);
+      });
+
     const handleResize = debounce(() => {
       setScreenLevel(detectWindowWidth());
     }, 200);
@@ -43,11 +51,17 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden bg-gray100 font-GenSekiGothic-R">
-      {/* <Map screenLevel={screenLevel} enteredSecondPage={enteredSecondPage} /> */}
+      <Map
+        screenLevel={screenLevel}
+        enteredSecondPage={enteredSecondPage}
+        voteDetail={voteDetail}
+        setIsMapLoading={setIsMapLoading}
+      />
       <Index
         enteredSecondPage={enteredSecondPage}
         setEnteredSecondPage={setEnteredSecondPage}
         screenLevel={screenLevel}
+        voteDetail={voteDetail}
       />
     </main>
   );

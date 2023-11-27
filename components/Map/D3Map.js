@@ -67,8 +67,7 @@ export default React.memo(function Map({
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
       function pathClass() {
-        const color = getRandomColor();
-        return ` hover:opacity-50 ${color} will-change-fill delay-200 during-150 transition ease-out`;
+        return `fill-transparent hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out`;
       }
 
       countyPaths
@@ -135,7 +134,14 @@ export default React.memo(function Map({
 
   return (
     <>
-      <div className="inline-block" id="map">
+      <div
+        className="inline-block"
+        id="map"
+        style={{
+          visibility: enteredSecondPage ? "visible" : "hidden",
+          position: enteredSecondPage ? "relative" : "absolute",
+        }}
+      >
         {/* 地圖會以 D3 產生 */}
       </div>
     </>

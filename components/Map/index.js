@@ -8,7 +8,7 @@ const mapPositionMode = {
   md: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
 };
 
-function Map({ screenLevel, enteredSecondPage }) {
+function Map({ screenLevel, enteredSecondPage, setIsMapLoading }) {
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
@@ -89,7 +89,6 @@ function Map({ screenLevel, enteredSecondPage }) {
       className={`absolute left-0 top-0  h-screen w-screen overflow-hidden ${
         enteredSecondPage ? "z-20" : "z-0"
       }`}
-      style={{ filter: blur(enteredSecondPage ? 0 : 5) }}
     >
       <div
         className={`relative h-screen w-screen transform duration-150 ease-in will-change-transform xl:container xl:w-auto`}
@@ -117,6 +116,8 @@ function Map({ screenLevel, enteredSecondPage }) {
             onCityClick={handleCityClick}
             enteredSecondPage={enteredSecondPage}
           />
+
+          {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}
         </section>
       </div>
     </section>
