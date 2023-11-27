@@ -58,6 +58,8 @@ export default function Home() {
         enteredSecondPage={enteredSecondPage}
         cityDetail={cityDetail}
         setIsMapLoading={setIsMapLoading}
+        setCityCode={setCityCode}
+        cityCode={cityCode}
       />
       <Index
         enteredSecondPage={enteredSecondPage}

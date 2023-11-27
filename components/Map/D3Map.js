@@ -25,7 +25,8 @@ export default React.memo(function Map({
   svgSize,
   onCityClick,
   enteredSecondPage,
-  voteDetail,
+  cityDetail,
+  setCityCode,
 }) {
   function setColor(percent, party) {
     let color = "blue";
@@ -86,7 +87,6 @@ export default React.memo(function Map({
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
       function pathClass() {
-        console.log({ voteDetail });
         return `fill-transparent hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out`;
       }
 
@@ -99,6 +99,8 @@ export default React.memo(function Map({
         .attr("class", () => pathClass())
         .on("click", function (event, d) {
           const currentCityCenter = cityCenter[d.properties.COUNTYID];
+          console.log(d.properties.COUNTYID);
+          setCityCode(d.properties.COUNTYID);
 
           const [x, y] = projectmethod([
             currentCityCenter.longitude,

@@ -7,7 +7,6 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
     if (screenLevel === "xl") return "/img/hamburger.svg";
     return "/img/hamburger-white.svg";
   };
-  console.log(hamburgerHandler());
   const handleMapButtonClick = () => {
     setEnteredSecondPage(true);
   };
@@ -86,6 +85,11 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
     }
   }, [enteredSecondPage]);
 
+  useEffect(() => {
+    fetch("/api/cityDetail?year=2020")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  });
   return (
     <>
       <div className="r-0 fixed z-10 flex w-full items-center justify-between gap-4 bg-gray900 px-[18px] py-3 md:pl-8 md:pr-11 xl:left-1/2 xl:w-[1320px] xl:-translate-x-1/2 xl:items-center xl:justify-end xl:bg-transparent xl:py-[22px] xl:pt-9">
