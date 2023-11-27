@@ -120,6 +120,20 @@ function Map({ screenLevel, enteredSecondPage, setIsMapLoading }) {
           {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}
         </section>
       </div>
+      <section className="absolute left-1/2 top-0 mx-auto h-screen w-[348px] -translate-x-1/2 font-GenSekiGothic-R text-gray900 md:w-[768px] xl:w-[1320px]">
+        <div className="absolute left-[34px] top-1/2 flex -translate-y-1/2 flex-col items-center bg-gray100 px-7 py-[30px]">
+          <div className="font-GenSekiGothic-B text-[28px] font-bold leading-none">
+            南投縣
+          </div>
+          <div className=" mt-[5px] text-sm">299,152票</div>
+          <div className="mt-[18px] flex items-center justify-between">
+            <div className="bg-green300 p-1 text-base leading-none">蔡</div>
+            <div>
+              50.8% <span className="text-green300">(-0.7%)</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
   );
 }

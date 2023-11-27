@@ -4,6 +4,7 @@ import { debounce } from "lodash";
 
 import Navbar from "@/components/layout/Navbar";
 import Index from "@/components/layout/Index";
+import Detail from "@/components/layout/Detail";
 import Map from "@/components/Map";
 
 const sizeSetting = {
