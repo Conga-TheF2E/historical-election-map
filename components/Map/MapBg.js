@@ -14,7 +14,7 @@ export default function MapBg({ selectedCity, mapMode }) {
     ]);
   }, [selectedCity]);
 
-  return mapMode === "common" ? (
+  return mapMode === "common" || selectedCity ? (
     <>
       <div
         className={`delay-325 absolute left-0 top-0 z-0 h-full bg-green-400 transition-all duration-500 ease-in  ${
