@@ -21,8 +21,9 @@ function Map(props) {
     cityCode,
     mapMode,
     setMapMode,
+    selectedCity,
+    setSelectedCity,
   } = props;
-  const [selectedCity, setSelectedCity] = useState(null);
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
@@ -160,9 +161,7 @@ function Map(props) {
           {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}
         </section>
       </div>
-      {selectedCity && (
-        <Modal {...props} resetMap={resetMap} selectedCity={selectedCity} />
-      )}
+      {selectedCity && <Modal {...props} resetMap={resetMap} />}
       {/* {selectedCity && (
         <div
           className="absolute left-1/2 top-1/2 flex -translate-x-[594px] -translate-y-1/2 flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900"

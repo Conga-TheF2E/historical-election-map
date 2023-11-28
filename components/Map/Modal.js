@@ -8,8 +8,8 @@ function Modal(props) {
     cityCode,
     mapMode,
     setMapMode,
-    resetMap,
     selectedCity,
+    setSelectedCity,
   } = props;
   return (
     <div
