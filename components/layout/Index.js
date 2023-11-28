@@ -92,16 +92,16 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
   }, []);
   return (
     <>
-      <div className="absolute w-full bg-gray900 md:h-20 xl:hidden"></div>
+      <div className="absolute  h-[46px] w-full bg-gray900 md:h-20 xl:hidden"></div>
       <div className="relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px]">
         <h1
           id="navTitle"
-          className="title absolute whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:left-8 md:top-[22px] md:text-4xl xl:absolute xl:left-[888px] xl:top-[36px] xl:text-gray900"
+          className="title absolute left-[18px] top-3 whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:left-8 md:top-[22px] md:text-4xl xl:absolute xl:left-[888px] xl:top-[36px] xl:text-gray900"
         >
           Conga 全台開票地圖
         </h1>
         <img
-          className="absolute z-50 h-[22px] cursor-pointer text-gray100 md:right-[44px]  md:top-[20px] md:h-auto xl:right-6 xl:top-[35px] xl:text-gray900"
+          className="absolute right-3 top-3 z-50 h-[22px] cursor-pointer text-gray100 md:right-[44px]  md:top-[20px] md:h-auto xl:right-6 xl:top-[35px] xl:text-gray900"
           src={hamburgerHandler()}
           alt=""
           onClick={() => {

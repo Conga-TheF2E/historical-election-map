@@ -224,6 +224,7 @@ function Map({
         mapMode={mapMode}
         selectedCity={selectedCity}
         enteredSecondPage={enteredSecondPage}
+        screenLevel={screenLevel}
       />
     </section>
   );
