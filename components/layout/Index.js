@@ -106,7 +106,12 @@ function Index({
   return (
     <>
       <div className="absolute  z-10 h-[46px] w-full bg-gray900 md:h-20 xl:hidden"></div>
-      <div className="relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px]">
+      <div
+        className={`relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px] `}
+      >
+        {isMapLoading && (
+          <div className="z-55 absolute left-0 top-0 h-screen w-screen backdrop-blur-sm"></div>
+        )}
         <h1
           id="navTitle"
           className="title absolute left-[18px] top-3 z-10 whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:left-8 md:top-[22px] md:text-4xl xl:absolute xl:left-[888px] xl:top-[36px] xl:text-gray900"
@@ -152,8 +157,15 @@ function Index({
         </div>
         <div
           id="enter"
-          className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap bg-gray900 px-8 py-3 font-GenSekiGothic-H text-base font-black text-gray100 duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] xl:hover:bg-white xl:hover:text-gray900"
-          onClick={() => handleMapButtonClick("common")}
+          className={`z-60 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap blur-none ${
+            isMapLoading
+              ? "bg-white100 text-gray900"
+              : "bg-gray900 text-gray100 xl:hover:bg-white xl:hover:text-gray900"
+          }  px-8 py-3 font-GenSekiGothic-H text-base font-black duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] `}
+          onClick={() => {
+            if (isMapLoading) return;
+            handleMapButtonClick("common");
+          }}
         >
           ＞ 進入開票地圖 ＜
         </div>

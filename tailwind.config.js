@@ -65,6 +65,19 @@ module.exports = {
         "right-top-transform": "right, top, transform",
         fill: "fill",
       },
+      // delay
+      transitionDelay: {
+        75: "75ms",
+        250: "250ms",
+        275: "275ms",
+        325: "325ms",
+        350: "350ms",
+      },
+      // z-index
+      zIndex: {
+        55: "55",
+        60: "60",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
