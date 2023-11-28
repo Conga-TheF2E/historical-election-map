@@ -13,10 +13,7 @@ function Modal(props) {
     setSelectedCity,
     resetMap,
   } = props;
-<<<<<<< Updated upstream
   const [showPrivous, setShowPrivous] = useState(false);
-=======
->>>>>>> Stashed changes
   return (
     <div
       className="absolute bottom-0 flex w-full flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900 md:bottom-[50px] md:left-1/2 md:w-auto md:-translate-x-[332px] xl:bottom-1/2 xl:-translate-x-[594px] xl:translate-y-1/2"
