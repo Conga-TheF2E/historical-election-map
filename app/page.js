@@ -75,6 +75,7 @@ export default function Home() {
         setCityCode={setCityCode}
         selectedCity={selectedCity}
         setSelectedCity={setSelectedCity}
+        isMapLoading={isMapLoading}
       />
     </main>
   );

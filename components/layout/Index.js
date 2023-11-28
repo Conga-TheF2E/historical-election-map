@@ -9,6 +9,7 @@ function Index({
   setMapMode,
   setSelectedCity,
   setCityCode,
+  isMapLoading,
 }) {
   const hamburgerHandler = () => {
     if (screenLevel === "xl") return "/img/hamburger.svg";
@@ -152,10 +153,14 @@ function Index({
         </div>
         <div
           id="enter"
-          className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap bg-gray900 px-8 py-3 font-GenSekiGothic-H text-base font-black text-gray100 duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] xl:hover:bg-white xl:hover:text-gray900"
+          className={`absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap ${
+            isMapLoading
+              ? "bg-white100 text-gray900"
+              : "bg-gray900 text-gray100 xl:hover:bg-white xl:hover:text-gray900"
+          }  px-8 py-3 font-GenSekiGothic-H text-base font-black duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] `}
           onClick={() => handleMapButtonClick("common")}
         >
-          ＞ 進入開票地圖 ＜
+          {isMapLoading ? "＞ Loading... ＜" : "＞ 進入開票地圖 ＜"}
         </div>
 
         <div

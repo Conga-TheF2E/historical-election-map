@@ -20,6 +20,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        white100: "#E8E8E8",
         green300: "#70BF85",
         green400: "#4DAD67",
         green500: "#3E8952",
@@ -72,6 +73,10 @@ module.exports = {
         275: "275ms",
         325: "325ms",
         350: "350ms",
+      },
+      // z-index
+      zIndex: {
+        60: "60",
       },
     },
   },
