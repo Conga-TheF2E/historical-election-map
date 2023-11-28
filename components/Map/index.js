@@ -126,7 +126,11 @@ function Map(props) {
         enteredSecondPage ? "z-20" : "z-0"
       }`}
     >
-      <MapBg cityDetail={cityDetail} selectedCity={selectedCity} />
+      <MapBg
+        cityDetail={cityDetail}
+        selectedCity={selectedCity}
+        mapMode={mapMode}
+      />
       <div
         className={`relative h-screen w-screen transform duration-150 ease-in will-change-transform xl:container xl:w-auto`}
         style={{

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function MapBg({ selectedCity }) {
+export default function MapBg({ selectedCity, mapMode }) {
   const [ratio, setRatio] = useState([53, 53]);
   useEffect(() => {
     if (!selectedCity) return;
@@ -13,11 +13,12 @@ export default function MapBg({ selectedCity }) {
       (b_party / totalPercent).toFixed(2) * 100 + 5,
     ]);
   }, [selectedCity]);
-  return (
+
+  return mapMode === "common" ? (
     <>
       <div
-        className={`absolute left-0 top-0 z-0 h-full bg-green-400 transition-transform delay-300 duration-700 ease-in  ${
-          selectedCity ? "translate-x-0" : " -translate-x-full"
+        className={`delay-325 absolute left-0 top-0 z-0 h-full bg-green-400 transition-all duration-500 ease-in  ${
+          selectedCity ? "translate-x-0" : " -translate-x-full "
         }`}
         style={{
           clipPath: "polygon(0 0, 100% 0, 90% 100%, 0% 100%)",
@@ -25,7 +26,7 @@ export default function MapBg({ selectedCity }) {
         }}
       ></div>
       <div
-        className={`absolute right-0 top-0 z-0 h-full bg-blue-400  transition-transform  delay-300 duration-700 ease-in
+        className={`delay-325 absolute right-0 top-0 z-0  h-full bg-blue-400 transition-all duration-500 ease-in
           ${selectedCity ? "translate-x-0" : "translate-x-full"}`}
         style={{
           clipPath: "polygon(10% 0, 100% 0, 100% 100%, 0% 100%)",
@@ -33,5 +34,5 @@ export default function MapBg({ selectedCity }) {
         }}
       ></div>
     </>
-  );
+  ) : null;
 }
