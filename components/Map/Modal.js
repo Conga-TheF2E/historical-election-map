@@ -16,13 +16,13 @@ function Modal(props) {
   const [showPrivous, setShowPrivous] = useState(false);
   return (
     <div
-      className="absolute bottom-0 flex w-full flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900 md:bottom-[50px] md:left-1/2 md:w-auto md:-translate-x-[332px] xl:bottom-1/2 xl:-translate-x-[594px] xl:translate-y-1/2"
+      className="absolute bottom-0  flex w-full flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900 md:bottom-[50px] md:left-1/2 md:w-auto md:-translate-x-[332px] xl:bottom-1/2 xl:-translate-x-[594px] xl:translate-y-1/2"
       style={{
-        display: cityCode != "" && mapMode == "common" ? "block" : "none",
+        display: cityCode != "" ? "block" : "none",
       }}
     >
       <div
-        className="absolute left-0 top-[-46px] bg-gray100 p-[3px]"
+        className="absolute left-[18px] top-[-46px] bg-gray100 p-[3px] md:left-0"
         onClick={() => resetMap()}
       >
         <img src="/img/arrow-left.svg" alt="" />
@@ -111,7 +111,7 @@ function Modal(props) {
         </div>
       </div>
       <div
-        className=" absolute right-[18px] top-[-44px] p-2.5 font-GenSekiGothic-B font-bold leading-none"
+        className=" absolute right-[18px] top-[-50px] p-2.5 font-GenSekiGothic-B font-bold leading-none"
         style={{
           display: screenLevel != "sm" ? "none" : "block",
           backgroundColor: showPrivous ? "#D3D3D3" : "#282828",

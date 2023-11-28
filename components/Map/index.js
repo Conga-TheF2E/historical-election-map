@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
 import D3Map from "./D3Map.js";
+import CandidatesModal from "./CandidateModal.js";
 import Modal from "./Modal.js";
 import MapBg from "./MapBg.js";
 import ColorBar from "./ColorBar.js";
@@ -162,8 +163,14 @@ function Map(props) {
           {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}
         </section>
       </div>
+      {enteredSecondPage && (
+        <CandidatesModal
+          mapMode={mapMode}
+          cityCode={cityCode}
+          screenLevel={screenLevel}
+        />
+      )}
       {selectedCity && <Modal {...props} resetMap={resetMap} />}
-
       <ColorBar
         mapMode={mapMode}
         selectedCity={selectedCity}
