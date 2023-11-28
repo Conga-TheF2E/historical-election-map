@@ -12,8 +12,12 @@ const getMercatorScale = () => {
 
   if (w > 1600) {
     return 15000;
-  } else if (w > 1200) {
-    return 12000;
+  } else if (w > 1500) {
+    return 11000;
+  } else if (w > 1400) {
+    return 10000;
+  } else if (w > 1100) {
+    return 9500;
   } else if (w > 700 && h > 800) {
     return 10000;
   } else {
@@ -55,8 +59,10 @@ function returnColor(percent, party, mode = "common") {
       level = 500;
     } else if (percent > 40) {
       level = 400;
-    } else {
+    } else if (percent > 30) {
       level = 300;
+    } else {
+      level = 200;
     }
   }
 
@@ -76,14 +82,31 @@ export default React.memo(function Map({
 }) {
   // 各城鎮的顏色
   const [cityColor, setCityColor] = useState(null);
+  const [tempMapMode, setTempMapMode] = useState("common");
+
+  useEffect(() => {
+    d3.transition().on("end", function () {
+      // 需多等一段時間，否則會有閃爍的感覺
+      setTimeout(() => {
+        setIsMapLoading(false);
+      }, 300);
+    });
+  }, []);
 
   useEffect(() => {
     if (!cityDetail) return;
     const color = {};
+    const partyObj = {
+      orange: "親民黨",
+      green: "民主進步黨",
+      blue: "中國國民黨",
+    };
     cityDetail.forEach((city) => {
+      const currentParty =
+        mapMode === "common" ? city.voteDetail.winner : partyObj[mapMode];
       color[city.cityCode] = returnColor(
-        city.voteDetail[city.voteDetail.winner].percentage,
-        city.voteDetail.winner,
+        city.voteDetail[currentParty].percentage,
+        currentParty,
         mapMode
       );
     });
@@ -92,7 +115,7 @@ export default React.memo(function Map({
   }, [cityDetail, mapMode]);
 
   useEffect(() => {
-    if (!svgSize || !cityColor) return;
+    if (!svgSize || !cityColor || tempMapMode !== mapMode) return;
     const { width, height, size } = svgSize;
     const isMobile = size === "sm";
     const mercatorScale = getMercatorScale();
@@ -125,12 +148,15 @@ export default React.memo(function Map({
         data.objects["COUNTY_MOI_1090820"]
       );
 
+      renderMap(countyGeometries, data);
+    });
+
+    function renderMap(countyGeometries, data) {
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
       function pathClass(cityID) {
         return `${cityColor[cityID]} hover:opacity-50 will-change-fill ease-out cursor-pointer transition delay-200 during-150`;
       }
-
       countyPaths
         .enter()
         .append("path")
@@ -178,12 +204,25 @@ export default React.memo(function Map({
             }
           });
         });
-    });
-
-    d3.transition().on("end", function () {
-      setIsMapLoading(false);
-    });
+    }
   }, [svgSize, cityColor]);
+
+  useEffect(() => {
+    if (!cityColor && tempMapMode === mapMode) return;
+    setTimeout(() => {
+      d3.selectAll("path").each(function () {
+        const currentPath = d3.select(this);
+        const pathID = currentPath.attr("id");
+
+        const fillColor = currentPath.attr("class").match(/\bfill-\S+-\d+\b/g);
+
+        currentPath.classed(fillColor[0], false);
+        currentPath.classed(cityColor[pathID], true);
+      });
+    }, 100);
+
+    setTempMapMode(mapMode);
+  }, [cityColor]);
 
   useEffect(() => {
     if (selectedCity) return;
@@ -214,7 +253,7 @@ export default React.memo(function Map({
       </div>
 
       {/* 避免 tree-shaking 讓class失效 */}
-      <div className="hidden fill-blue-300 fill-blue-400 fill-blue-500 fill-blue-600 fill-green-300 fill-green-400 fill-green-500 fill-green-600 fill-orange-300 fill-orange-400 fill-orange-500 fill-orange-600"></div>
+      <div className="hidden fill-blue-200 fill-blue-300 fill-blue-400 fill-blue-500 fill-blue-600 fill-green-200 fill-green-300 fill-green-400 fill-green-500 fill-green-600 fill-orange-200 fill-orange-300 fill-orange-400 fill-orange-500 fill-orange-600"></div>
     </>
   );
 });

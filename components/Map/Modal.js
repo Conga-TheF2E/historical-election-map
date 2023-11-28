@@ -102,11 +102,11 @@ function Modal(props) {
           marginBottom: screenLevel == "sm" ? "42px" : "0px",
         }}
       >
-        <div className="flex flex-col items-center bg-gray900 px-[18px] pb-1.5 pt-1">
+        <div className="flex cursor-not-allowed flex-col items-center bg-gray900 px-[18px] pb-1.5 pt-1">
           <div className="text-xs text-gray100">2018九合一大選</div>
           <div className="mt-1 bg-blue300 p-0.5 text-base leading-none">國</div>
         </div>
-        <div className="flex flex-col items-center bg-gray900 px-[24px] pb-1.5 pt-1">
+        <div className="flex cursor-not-allowed flex-col items-center bg-gray900 px-[24px] pb-1.5  pt-1">
           <div className="text-xs text-gray100">2016總統大選</div>
           <div className="mt-1 bg-green300 p-0.5 text-base leading-none">
             民

@@ -79,6 +79,10 @@ module.exports = {
         55: "55",
         60: "60",
       },
+      //scale
+      scale: {
+        225: "2.25",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -51,7 +51,7 @@ function Map(props) {
         width: 550,
         height: window?.innerHeight - 84 || 650,
         mr: -90,
-        mt: 84,
+        mt: 80,
         top: 110,
         size: "md",
       };
@@ -59,7 +59,7 @@ function Map(props) {
       return {
         width: 300,
         height: window?.innerHeight - 84 || 500,
-        mt: 84,
+        mt: 46,
         size: "sm",
       };
     }
@@ -164,7 +164,13 @@ function Map(props) {
             setIsMapLoading={setIsMapLoading}
           />
 
-          {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}
+          {!enteredSecondPage && (
+            <img
+              src="/img/map.svg"
+              className="scale-225 -translate-x-1/4 translate-y-1/2 md:translate-x-0 md:translate-y-1/4 md:scale-150 xl:translate-y-0 xl:scale-100"
+              alt="fake map"
+            />
+          )}
         </section>
       </div>
       {enteredSecondPage && (
