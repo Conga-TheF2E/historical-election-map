@@ -181,7 +181,7 @@ export default React.memo(function Map({
     });
 
     d3.transition().on("end", function () {
-      setIsMapLoading(false);
+      // setIsMapLoading(false);
     });
   }, [svgSize, cityColor]);
 
