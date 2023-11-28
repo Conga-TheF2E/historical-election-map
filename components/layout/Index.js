@@ -101,7 +101,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           Conga 全台開票地圖
         </h1>
         <img
-          className="z-50 h-[22px] cursor-pointer text-gray100 md:h-auto xl:text-gray900"
+          className="r-0 t-1/2 absolute z-50  h-[22px] -translate-y-1/2 cursor-pointer text-gray100 md:h-auto xl:text-gray900"
           src={hamburgerHandler()}
           alt=""
           onClick={() => {

@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import D3Map from "./D3Map.js";
+import MapBg from "./MapBg.js";
 
 const mapPositionMode = {
   common: "top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 ",
@@ -16,7 +17,7 @@ function Map({
   setCityCode,
   cityCode,
 }) {
-  const [selectedCity, setSelectedCity] = useState({});
+  const [selectedCity, setSelectedCity] = useState(null);
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
@@ -29,6 +30,7 @@ function Map({
     mr: 60,
     size: "xl",
   });
+  const [mapMode, setMapMode] = useState("common"); // 'common' | 'blue' | 'green' | 'orange'
 
   const svgSetting = useCallback((currentScreenLevel) => {
     if (currentScreenLevel === "xl") {
@@ -66,7 +68,6 @@ function Map({
     cityDetail.forEach((city) => {
       if (city.cityCode == cityCode) {
         setSelectedCity(city);
-        console.log(city);
       }
     });
   }, [cityCode]);
@@ -102,6 +103,16 @@ function Map({
     [screenLevel]
   );
 
+  const resetMap = () => {
+    setCityCode("");
+    setTransformPosition({
+      dx: 0,
+      dy: 0,
+      scale: 1,
+    });
+    setChangeCssPosition(false);
+  };
+
   return (
     <section
       className={`absolute left-0 top-0  h-screen w-screen overflow-hidden ${
@@ -134,20 +145,22 @@ function Map({
             onCityClick={handleCityClick}
             enteredSecondPage={enteredSecondPage}
             cityDetail={cityDetail}
+            cityCode={cityCode}
             setCityCode={setCityCode}
+            mapMode={mapMode}
           />
 
           {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}
         </section>
       </div>
-      {selectedCity.name && (
+      {selectedCity && (
         <div
           className="absolute left-1/2 top-1/2 flex -translate-x-[594px] -translate-y-1/2 flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900"
           style={{ display: cityCode != "" ? "block" : "none" }}
         >
           <div
             className="absolute top-[-46px] bg-gray100 p-[3px]"
-            onClick={() => setCityCode("")}
+            onClick={() => resetMap()}
           >
             <img src="/img/arrow-left.svg" alt="" />
           </div>
@@ -203,6 +216,8 @@ function Map({
           </div>
         </div>
       )}
+
+      {/* <MapBg cityDetail={cityDetail} selectedCity={selectedCity} /> */}
     </section>
   );
 }

@@ -17,7 +17,6 @@ export default function Home() {
   const [screenLevel, setScreenLevel] = useState(null);
   const [cityCode, setCityCode] = useState("");
   const [isMapLoading, setIsMapLoading] = useState(true);
-  const [voteDetail, setVoteDetail] = useState(null);
   const [cityDetail, setCityDetail] = useState(null);
 
   const detectWindowWidth = () => {
@@ -65,7 +64,6 @@ export default function Home() {
         enteredSecondPage={enteredSecondPage}
         setEnteredSecondPage={setEnteredSecondPage}
         screenLevel={screenLevel}
-        voteDetail={voteDetail}
         cityDetail={cityDetail}
       />
     </main>
