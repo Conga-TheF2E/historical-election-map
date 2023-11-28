@@ -89,7 +89,6 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
     fetch("/api/voteDetail?year=2020")
       .then((res) => res.json())
       .then((data) => setVoteDetail(data));
-    console.log(voteDetail);
   }, []);
   return (
     <>

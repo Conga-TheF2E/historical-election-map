@@ -2,6 +2,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import D3Map from "./D3Map.js";
 import MapBg from "./MapBg.js";
+import ColorBar from "./ColorBar.js";
 
 const mapPositionMode = {
   common: "top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 ",
@@ -148,6 +149,7 @@ function Map({
             cityCode={cityCode}
             setCityCode={setCityCode}
             mapMode={mapMode}
+            setIsMapLoading={setIsMapLoading}
           />
 
           {!enteredSecondPage && <img src="/img/map.svg" alt="fake map" />}
@@ -218,6 +220,11 @@ function Map({
       )}
 
       {/* <MapBg cityDetail={cityDetail} selectedCity={selectedCity} /> */}
+      <ColorBar
+        mapMode={mapMode}
+        selectedCity={selectedCity}
+        enteredSecondPage={enteredSecondPage}
+      />
     </section>
   );
 }

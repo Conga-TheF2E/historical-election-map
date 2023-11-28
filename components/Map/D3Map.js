@@ -59,6 +59,7 @@ export default React.memo(function Map({
   cityCode,
   setCityCode,
   mapMode,
+  setIsMapLoading,
 }) {
   // 各城鎮的顏色
   const [cityColor, setCityColor] = useState(null);
@@ -163,6 +164,10 @@ export default React.memo(function Map({
             }
           });
         });
+    });
+
+    d3.transition().on("end", function () {
+      setIsMapLoading(false);
     });
   }, [svgSize, cityColor]);
 
