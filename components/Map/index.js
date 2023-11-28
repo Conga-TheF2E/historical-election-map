@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
 import D3Map from "./D3Map.js";
+import Modal from "./Modal.js";
 import MapBg from "./MapBg.js";
 import ColorBar from "./ColorBar.js";
 
@@ -10,18 +11,18 @@ const mapPositionMode = {
   md: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
 };
 
-function Map({
-  screenLevel,
-  enteredSecondPage,
-  setIsMapLoading,
-  cityDetail,
-  setCityCode,
-  cityCode,
-  mapMode,
-  setMapMode,
-  selectedCity,
-  setSelectedCity,
-}) {
+function Map(props) {
+  const {
+    screenLevel,
+    enteredSecondPage,
+    setIsMapLoading,
+    cityDetail,
+    setCityCode,
+    cityCode,
+    mapMode,
+    setMapMode,
+  } = props;
+  const [selectedCity, setSelectedCity] = useState(null);
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
@@ -160,6 +161,9 @@ function Map({
         </section>
       </div>
       {selectedCity && (
+        <Modal {...props} resetMap={resetMap} selectedCity={selectedCity} />
+      )}
+      {/* {selectedCity && (
         <div
           className="absolute left-1/2 top-1/2 flex -translate-x-[594px] -translate-y-1/2 flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900"
           style={{ display: cityCode != "" ? "block" : "none" }}
@@ -221,7 +225,7 @@ function Map({
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       <ColorBar
         mapMode={mapMode}
