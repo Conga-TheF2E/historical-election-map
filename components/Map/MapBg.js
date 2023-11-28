@@ -5,18 +5,18 @@ export default function MapBg({ selectedCity }) {
   useEffect(() => {
     if (!selectedCity) return;
     // return;
-    const g_party = selectedCity.voteDetail["民主進步黨"].percentage;
-    const b_party = selectedCity.voteDetail["中國國民黨"].percentage;
+    const g_party = Number(selectedCity.voteDetail["民主進步黨"].percentage);
+    const b_party = Number(selectedCity.voteDetail["中國國民黨"].percentage);
     const totalPercent = g_party + b_party;
     setRatio([
-      (g_party / totalPercent).toFixed(2) * 100 + 3,
-      (b_party / totalPercent).toFixed(2) * 100 + 3,
+      (g_party / totalPercent).toFixed(2) * 100 + 5,
+      (b_party / totalPercent).toFixed(2) * 100 + 5,
     ]);
   }, [selectedCity]);
-  return selectedCity ? (
+  return (
     <>
       <div
-        className={`absolute left-0 top-0 z-0 h-full bg-green-400 transition-transform ${
+        className={`absolute left-0 top-0 z-0 h-full bg-green-400 transition-transform delay-300 duration-700 ease-in  ${
           selectedCity ? "translate-x-0" : " -translate-x-full"
         }`}
         style={{
@@ -25,13 +25,13 @@ export default function MapBg({ selectedCity }) {
         }}
       ></div>
       <div
-        className={`absolute right-0 top-0 z-0 h-full bg-blue-400  transition-transform 
+        className={`absolute right-0 top-0 z-0 h-full bg-blue-400  transition-transform  delay-300 duration-700 ease-in
           ${selectedCity ? "translate-x-0" : "translate-x-full"}`}
         style={{
           clipPath: "polygon(10% 0, 100% 0, 100% 100%, 0% 100%)",
-          width: `${ratio[0]}%`,
+          width: `${ratio[1]}%`,
         }}
       ></div>
     </>
-  ) : null;
+  );
 }

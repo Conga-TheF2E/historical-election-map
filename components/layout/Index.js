@@ -8,6 +8,7 @@ function Index({
   screenLevel,
   setMapMode,
   setSelectedCity,
+  setCityCode,
 }) {
   const hamburgerHandler = () => {
     if (screenLevel === "xl") return "/img/hamburger.svg";
@@ -119,6 +120,7 @@ function Index({
           onClick={() => {
             setEnteredSecondPage(false);
             setSelectedCity(null);
+            setCityCode("");
           }}
         />
         <div

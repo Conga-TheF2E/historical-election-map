@@ -38,14 +38,26 @@ function returnColor(percent, party, mode = "common") {
     color = "orange";
   }
 
-  if (percent > 65) {
-    level = 600;
-  } else if (percent > 60) {
-    level = 500;
-  } else if (percent > 55) {
-    level = 400;
+  if (mode === "common") {
+    if (percent > 65) {
+      level = 600;
+    } else if (percent > 60) {
+      level = 500;
+    } else if (percent > 55) {
+      level = 400;
+    } else {
+      level = 300;
+    }
   } else {
-    level = 300;
+    if (percent > 60) {
+      level = 600;
+    } else if (percent > 50) {
+      level = 500;
+    } else if (percent > 40) {
+      level = 400;
+    } else {
+      level = 300;
+    }
   }
 
   return `fill-${color}-${level}`;
@@ -60,6 +72,7 @@ export default React.memo(function Map({
   setCityCode,
   mapMode,
   setIsMapLoading,
+  selectedCity,
 }) {
   // 各城鎮的顏色
   const [cityColor, setCityColor] = useState(null);
@@ -115,7 +128,7 @@ export default React.memo(function Map({
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
       function pathClass(cityID) {
-        return `${cityColor[cityID]} hover:opacity-50 will-change-fill delay-200 during-150 transition ease-out cursor-pointer`;
+        return `${cityColor[cityID]} hover:opacity-50 will-change-fill ease-out cursor-pointer transition delay-200 during-150`;
       }
 
       countyPaths
@@ -173,7 +186,7 @@ export default React.memo(function Map({
   }, [svgSize, cityColor]);
 
   useEffect(() => {
-    if (!enteredSecondPage || cityCode !== "") return;
+    if (selectedCity) return;
     // refill paths
     d3.selectAll("path").each(function () {
       const currentPath = d3.select(this);
@@ -185,7 +198,7 @@ export default React.memo(function Map({
         currentPath.classed(cityColor[pathID], true);
       }
     });
-  }, [enteredSecondPage, cityCode]);
+  }, [selectedCity]);
 
   return (
     <>

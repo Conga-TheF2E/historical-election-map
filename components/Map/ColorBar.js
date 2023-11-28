@@ -4,7 +4,6 @@ export default function RenderColorBar({
   selectedCity,
   enteredSecondPage,
 }) {
-  console.log(screenLevel);
   return (
     <section
       className={`bottom-0 mx-auto w-[348px] md:w-[768px] xl:w-[1320px] ${

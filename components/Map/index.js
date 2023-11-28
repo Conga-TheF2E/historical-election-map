@@ -152,6 +152,7 @@ function Map(props) {
             onCityClick={handleCityClick}
             enteredSecondPage={enteredSecondPage}
             cityDetail={cityDetail}
+            selectedCity={selectedCity}
             cityCode={cityCode}
             setCityCode={setCityCode}
             mapMode={mapMode}
