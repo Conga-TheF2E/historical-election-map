@@ -117,6 +117,7 @@ function Index({
           alt=""
           onClick={() => {
             setEnteredSecondPage(false);
+            setSelectedCity(null);
           }}
         />
         <div

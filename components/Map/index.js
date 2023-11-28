@@ -19,8 +19,9 @@ function Map({
   cityCode,
   mapMode,
   setMapMode,
+  selectedCity,
+  setSelectedCity,
 }) {
-  const [selectedCity, setSelectedCity] = useState(null);
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
@@ -122,7 +123,7 @@ function Map({
         enteredSecondPage ? "z-20" : "z-0"
       }`}
     >
-      {/* <MapBg cityDetail={cityDetail} selectedCity={selectedCity} /> */}
+      <MapBg cityDetail={cityDetail} selectedCity={selectedCity} />
       <div
         className={`relative h-screen w-screen transform duration-150 ease-in will-change-transform xl:container xl:w-auto`}
         style={{
