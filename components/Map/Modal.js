@@ -10,14 +10,18 @@ function Modal(props) {
     setMapMode,
     selectedCity,
     setSelectedCity,
+    resetMap,
   } = props;
+  console.log(mapMode, cityCode);
   return (
     <div
       className="absolute left-1/2 top-1/2 flex -translate-x-[594px] -translate-y-1/2 flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900"
-      style={{ display: cityCode != "" ? "block" : "none" }}
+      style={{
+        display: cityCode != "" && mapMode == "common" ? "block" : "none",
+      }}
     >
       <div
-        className="absolute top-[-46px] bg-gray100 p-[3px]"
+        className="absolute left-0 top-[-46px] bg-gray100 p-[3px]"
         onClick={() => resetMap()}
       >
         <img src="/img/arrow-left.svg" alt="" />

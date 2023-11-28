@@ -51,7 +51,9 @@ export default function Home() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  useEffect(() => {
+    console.log({ selectedCity });
+  }, [selectedCity]);
   return (
     <main className="overflow-hidden bg-gray100 font-GenSekiGothic-R">
       <Map

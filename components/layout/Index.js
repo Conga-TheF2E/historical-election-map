@@ -7,6 +7,7 @@ function Index({
   setEnteredSecondPage,
   screenLevel,
   setMapMode,
+  setSelectedCity,
 }) {
   const hamburgerHandler = () => {
     if (screenLevel === "xl") return "/img/hamburger.svg";
@@ -107,7 +108,7 @@ function Index({
       <div className="relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px]">
         <h1
           id="navTitle"
-          className="title absolute left-[18px] top-3 whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:left-8 md:top-[22px] md:text-4xl xl:absolute xl:left-[888px] xl:top-[36px] xl:text-gray900"
+          className="title absolute left-[18px] top-3 z-10 whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:left-8 md:top-[22px] md:text-4xl xl:absolute xl:left-[888px] xl:top-[36px] xl:text-gray900"
         >
           Conga 全台開票地圖
         </h1>
