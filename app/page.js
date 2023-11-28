@@ -18,6 +18,7 @@ export default function Home() {
   const [cityCode, setCityCode] = useState("");
   const [isMapLoading, setIsMapLoading] = useState(true);
   const [cityDetail, setCityDetail] = useState(null);
+  const [mapMode, setMapMode] = useState("common"); // 'common' | 'blue' | 'green' | 'orange'
 
   const detectWindowWidth = () => {
     const w = window.innerWidth;
@@ -59,12 +60,16 @@ export default function Home() {
         setIsMapLoading={setIsMapLoading}
         setCityCode={setCityCode}
         cityCode={cityCode}
+        mapMode={mapMode}
+        setMapMode={setMapMode}
       />
       <Index
         enteredSecondPage={enteredSecondPage}
         setEnteredSecondPage={setEnteredSecondPage}
         screenLevel={screenLevel}
         cityDetail={cityDetail}
+        mapMode={mapMode}
+        setMapMode={setMapMode}
       />
     </main>
   );

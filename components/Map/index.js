@@ -17,6 +17,8 @@ function Map({
   cityDetail,
   setCityCode,
   cityCode,
+  mapMode,
+  setMapMode,
 }) {
   const [selectedCity, setSelectedCity] = useState(null);
   const [changeCssPosition, setChangeCssPosition] = useState(false);
@@ -31,7 +33,6 @@ function Map({
     mr: 60,
     size: "xl",
   });
-  const [mapMode, setMapMode] = useState("common"); // 'common' | 'blue' | 'green' | 'orange'
 
   const svgSetting = useCallback((currentScreenLevel) => {
     if (currentScreenLevel === "xl") {
@@ -106,6 +107,7 @@ function Map({
 
   const resetMap = () => {
     setCityCode("");
+
     setTransformPosition({
       dx: 0,
       dy: 0,

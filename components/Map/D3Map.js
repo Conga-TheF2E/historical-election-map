@@ -127,8 +127,6 @@ export default React.memo(function Map({
         .attr("class", (d) => pathClass(d.properties.COUNTYID))
         .on("click", function (event, d) {
           const currentCityCenter = cityCenter[d.properties.COUNTYID];
-          setCityCode(d.properties.COUNTYID);
-          onCityClick({ dx, dy, scale });
 
           const [x, y] = projectmethod([
             currentCityCenter.longitude,
@@ -138,6 +136,9 @@ export default React.memo(function Map({
           const scale = isMobile ? 1.1 : 1;
           const dx = isMobile ? -(x - width / 2) * scale : 0;
           const dy = isMobile ? -(y - height / 2) * scale - 90 : 0; // 多向上移動 50px
+
+          onCityClick({ dx, dy, scale });
+          setCityCode(d.properties.COUNTYID);
 
           // 修改除被点击路径外其他路径元素的类
 
@@ -159,7 +160,7 @@ export default React.memo(function Map({
                 .match(/\bfill-\S+-\d+\b/g);
               if (fillColor?.[0] && fillColor[0] === "fill-gray-100") {
                 currentPath.classed(fillColor[0], false);
-                currentPath.classed(cityColor[currentPath.attr.id], true);
+                currentPath.classed(cityColor[currentPath.attr("id")], true);
               }
             }
           });
@@ -172,15 +173,16 @@ export default React.memo(function Map({
   }, [svgSize, cityColor]);
 
   useEffect(() => {
-    if (enteredSecondPage || cityCode !== "") return;
+    if (!enteredSecondPage || cityCode !== "") return;
     // refill paths
     d3.selectAll("path").each(function () {
       const currentPath = d3.select(this);
-      const pathID = currentPath.id;
+      const pathID = currentPath.attr("id");
+
       const fillColor = currentPath.attr("class").match(/\bfill-\S+-\d+\b/g);
       if (fillColor?.[0] && fillColor[0] === "fill-gray-100") {
         currentPath.classed("fill-gray-100", false);
-        currentPath.classed(cityColor(pathID), true);
+        currentPath.classed(cityColor[pathID], true);
       }
     });
   }, [enteredSecondPage, cityCode]);
@@ -199,7 +201,7 @@ export default React.memo(function Map({
       </div>
 
       {/* 避免 tree-shaking 讓class失效 */}
-      <div className="hidden fill-blue-300 fill-blue-400 fill-blue-500 fill-blue-600 fill-green-300 fill-green-400 fill-green-500 fill-green-600"></div>
+      <div className="hidden fill-blue-300 fill-blue-400 fill-blue-500 fill-blue-600 fill-green-300 fill-green-400 fill-green-500 fill-green-600 fill-orange-300 fill-orange-400 fill-orange-500 fill-orange-600"></div>
     </>
   );
 });
