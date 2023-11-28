@@ -32,7 +32,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#navTitle", { x: "-860px" });
           gsap.to("#TotalVotes", { x: "-600px", opacity: 0 });
           gsap.to("#description", { opacity: 0 });
-          gsap.to("#enter", { opacity: 0 });
+          gsap.to("#enter", { opacity: 0, display: "none" });
           gsap.to("#title", { y: "300px", opacity: 0 });
           gsap.to("#buttons", { x: "600px", opacity: 0 });
         } else {
@@ -40,7 +40,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#navTitle", { x: "0" });
           gsap.to("#TotalVotes", { x: "0", opacity: 1 });
           gsap.to("#description", { opacity: 1 });
-          gsap.to("#enter", { opacity: 1 });
+          gsap.to("#enter", { opacity: 1, display: "block" });
           gsap.to("#title", { y: "0", opacity: 1 });
           gsap.to("#buttons", { x: "0", opacity: 1 });
         }
@@ -51,14 +51,14 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#year", { x: "600px", opacity: 0 });
           gsap.to("#TotalVotes", { opacity: 0 });
           gsap.to("#description", { x: "-600px", opacity: 0 });
-          gsap.to("#enter", { opacity: 0 });
+          gsap.to("#enter", { opacity: 0, display: "none" });
           gsap.to("#title", { y: "300px", opacity: 0 });
           gsap.to("#buttons", { opacity: 0 });
         } else {
           gsap.to("#year", { x: "0", opacity: 1 });
           gsap.to("#TotalVotes", { opacity: 1 });
           gsap.to("#description", { x: "0", opacity: 1 });
-          gsap.to("#enter", { opacity: 1 });
+          gsap.to("#enter", { opacity: 1, display: "block" });
           gsap.to("#title", { y: "0", opacity: 1 });
           gsap.to("#buttons", { opacity: 1 });
         }
@@ -68,7 +68,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#year", { opacity: 0 });
           gsap.to("#TotalVotes", { opacity: 0 });
           gsap.to("#description", { opacity: 0 });
-          gsap.to("#enter", { opacity: 0 });
+          gsap.to("#enter", { opacity: 0, display: "none" });
           gsap.to("#title", { opacity: 0 });
           gsap.to("#buttons", { opacity: 0 });
           gsap.to("#inTitle", { opacity: 1 });
@@ -76,7 +76,7 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
           gsap.to("#year", { opacity: 1 });
           gsap.to("#TotalVotes", { opacity: 1 });
           gsap.to("#description", { opacity: 1 });
-          gsap.to("#enter", { opacity: 1 });
+          gsap.to("#enter", { opacity: 1, display: "block" });
           gsap.to("#title", { opacity: 1 });
           gsap.to("#buttons", { opacity: 1 });
           gsap.to("#inTitle", { opacity: 0 });
@@ -93,44 +93,43 @@ function Index({ enteredSecondPage, setEnteredSecondPage, screenLevel }) {
   }, []);
   return (
     <>
-      <div className="r-0 fixed z-10 flex w-full items-center justify-between gap-4 bg-gray900 px-[18px] py-3 md:pl-8 md:pr-11 xl:left-1/2 xl:w-[1320px] xl:-translate-x-1/2 xl:items-center xl:justify-end xl:bg-transparent xl:py-[22px] xl:pt-9">
+      <div className="absolute w-full bg-gray900 md:h-20 xl:hidden"></div>
+      <div className="relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px]">
         <h1
           id="navTitle"
-          className="title right-[100px] whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:text-4xl xl:absolute xl:text-gray900"
+          className="title absolute whitespace-nowrap text-[23px] font-semibold leading-none text-gray100 md:left-8 md:top-[22px] md:text-4xl xl:absolute xl:left-[888px] xl:top-[36px] xl:text-gray900"
         >
           Conga 全台開票地圖
         </h1>
         <img
-          className="r-0 t-1/2 absolute z-50  h-[22px] -translate-y-1/2 cursor-pointer text-gray100 md:h-auto xl:text-gray900"
+          className="absolute z-50 h-[22px] cursor-pointer text-gray100 md:right-[44px]  md:top-[20px] md:h-auto xl:right-6 xl:top-[35px] xl:text-gray900"
           src={hamburgerHandler()}
           alt=""
           onClick={() => {
             setEnteredSecondPage(false);
           }}
         />
-      </div>
-      <div className="relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px]">
         <div
           id="year"
           style={{ fontFamily: "m-plus-1p-b" }}
-          className="absolute bottom-[100px] right-[155px] z-0 block w-fit text-[74px] font-black leading-none md:bottom-[230px] md:right-8 md:text-[150px] xl:left-0 xl:top-7 xl:text-[215px]"
+          className="absolute bottom-[100px] right-[155px] z-0 block w-fit text-[74px] font-black leading-none md:bottom-[230px] md:right-8 md:text-[150px] xl:left-0 xl:top-6 xl:text-[215px]"
         >
           2020
         </div>
-        <div className="absolute bottom-[100px] right-0 md:right-4 md:top-[104px] xl:left-4 xl:top-[222px]">
+        <div className="absolute bottom-[100px] right-0 md:right-4 md:top-[104px] xl:left-4 xl:top-[245px]">
           <div
             id="TotalVotes"
             className="text-right text-[14px] font-bold md:text-[28px] xl:text-left"
           >
             <div>總投票數：{voteDetail.allVotes}</div>
-            <div className="mt-2 md:mt-[18px] xl:mt-7">
+            <div className="mt-2 md:mt-[18px] xl:mt-6">
               全國投票率：{voteDetail.vitePercentage}
             </div>
           </div>
         </div>
         <div
           id="description"
-          className="xl:justify-left absolute bottom-[186px] hidden w-full justify-between px-8 text-[25px] font-extrabold md:flex xl:bottom-[26px] xl:left-4 xl:w-auto xl:flex-col xl:gap-8"
+          className="xl:justify-left font- absolute bottom-[186px] hidden w-full justify-between px-8 font-GenSekiGothic-B text-[25px] md:flex xl:bottom-[26px] xl:left-4 xl:w-auto xl:flex-col xl:gap-8"
         >
           <div>2020</div>
           <div>TAIWAN</div>
