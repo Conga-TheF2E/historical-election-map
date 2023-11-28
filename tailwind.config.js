@@ -76,6 +76,7 @@ module.exports = {
       },
       // z-index
       zIndex: {
+        55: "55",
         60: "60",
       },
     },
