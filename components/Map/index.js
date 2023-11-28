@@ -107,7 +107,7 @@ function Map({
 
   const resetMap = () => {
     setCityCode("");
-
+    setSelectedCity(null);
     setTransformPosition({
       dx: 0,
       dy: 0,
@@ -122,6 +122,7 @@ function Map({
         enteredSecondPage ? "z-20" : "z-0"
       }`}
     >
+      {/* <MapBg cityDetail={cityDetail} selectedCity={selectedCity} /> */}
       <div
         className={`relative h-screen w-screen transform duration-150 ease-in will-change-transform xl:container xl:w-auto`}
         style={{
@@ -221,7 +222,6 @@ function Map({
         </div>
       )}
 
-      {/* <MapBg cityDetail={cityDetail} selectedCity={selectedCity} /> */}
       <ColorBar
         mapMode={mapMode}
         selectedCity={selectedCity}

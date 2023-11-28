@@ -103,7 +103,7 @@ function Index({
   }, []);
   return (
     <>
-      <div className="absolute  h-[46px] w-full bg-gray900 md:h-20 xl:hidden"></div>
+      <div className="absolute  z-10 h-[46px] w-full bg-gray900 md:h-20 xl:hidden"></div>
       <div className="relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px]">
         <h1
           id="navTitle"
