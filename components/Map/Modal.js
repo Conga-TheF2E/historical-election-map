@@ -48,7 +48,8 @@ function Modal(props) {
       >
         <div className="bg-green300 p-1 text-base leading-none">蔡</div>
         <div className=" font-GenSekiGothic-M font-medium">
-          {selectedCity.voteDetail.民主進步黨.percentage}{" "}
+          {selectedCity.voteDetail.民主進步黨.percentage}
+          {"% "}
           <span className="text-green300">
             ({selectedCity.voteDetail.民主進步黨.compare})
           </span>
@@ -63,7 +64,8 @@ function Modal(props) {
       >
         <div className="bg-blue300 p-1 text-base leading-none">韓</div>
         <div className=" font-GenSekiGothic-M font-medium">
-          {selectedCity.voteDetail.中國國民黨.percentage}{" "}
+          {selectedCity.voteDetail.中國國民黨.percentage}
+          {"% "}
           <span className="text-blue300">
             ({selectedCity.voteDetail.中國國民黨.compare})
           </span>
@@ -78,7 +80,8 @@ function Modal(props) {
       >
         <div className="bg-orange500 p-1 text-base leading-none">宋</div>
         <div className=" font-GenSekiGothic-M font-medium">
-          {selectedCity.voteDetail.親民黨.percentage}{" "}
+          {selectedCity.voteDetail.親民黨.percentage}
+          {"% "}
           <span className="text-orange500">
             ({selectedCity.voteDetail.親民黨.compare})
           </span>
