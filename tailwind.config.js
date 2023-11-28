@@ -32,6 +32,9 @@ module.exports = {
         orange500: "#D08871",
         gray100: "#D3D3D3",
         gray900: "#282828",
+        white: {
+          100: "#E8E8E8",
+        },
         green: {
           200: "#CAE9D2",
           300: "#70BF85",

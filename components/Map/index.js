@@ -167,7 +167,7 @@ function Map(props) {
           {!enteredSecondPage && (
             <img
               src="/img/map.svg"
-              className="scale-225 -translate-x-1/4 translate-y-1/2 md:translate-x-0 md:translate-y-1/4 md:scale-150 xl:translate-y-0 xl:scale-100"
+              className="scale-225 -translate-x-1/4 translate-y-1/2 md:translate-x-0 md:translate-y-1/4 md:scale-150 lg:translate-y-0 lg:scale-100"
               alt="fake map"
             />
           )}

@@ -24,7 +24,7 @@ function Index({
       onClick={() => {
         handleMapButtonClick(mode);
       }}
-      className="duration-10 group relative cursor-pointer bg-gray900 p-2.5 text-gray100 duration-100 ease-linear hover:bg-white hover:text-gray900 md:p-4 xl:px-[54px] xl:py-[14px] xl:pl-[44px]"
+      className="duration-10 hover:bg-white-100 group relative cursor-pointer bg-gray900 p-2.5 text-gray100 duration-100 ease-linear hover:text-gray900 md:p-4 xl:px-[54px] xl:py-[14px] xl:pl-[44px]"
     >
       <div className="absolute left-6 top-[30px] hidden h-1 w-2.5 bg-gray100 group-hover:bg-gray900 xl:block"></div>
       <div className="text-[25px] font-semibold leading-none md:text-[40px] xl:text-[35px]">
@@ -111,7 +111,7 @@ function Index({
         className={`relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px] `}
       >
         {isMapLoading && (
-          <div className="z-55 absolute left-0 top-0 h-screen w-screen backdrop-blur-sm"></div>
+          <div className="absolute left-0 top-0 z-55 h-screen w-screen backdrop-blur-sm"></div>
         )}
         <h1
           id="navTitle"
@@ -158,10 +158,10 @@ function Index({
         </div>
         <div
           id="enter"
-          className={`z-60 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap blur-none ${
+          className={`absolute left-1/2 top-1/2 z-60 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap blur-none ${
             isMapLoading
               ? "bg-white100 text-gray900"
-              : "bg-gray900 text-gray100 xl:hover:bg-white xl:hover:text-gray900"
+              : "bg-gray900 text-gray100 xl:hover:bg-white100 xl:hover:text-gray900"
           }  px-8 py-3 font-GenSekiGothic-H text-base font-black duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] `}
           onClick={() => {
             if (isMapLoading) return;
