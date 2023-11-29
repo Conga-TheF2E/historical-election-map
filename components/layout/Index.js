@@ -194,7 +194,7 @@ function Index({
         </div>
         <h1
           id="title"
-          className="absolute bottom-[6px] w-full text-center text-[87px] font-black leading-none md:bottom-[18px] md:text-[177px] xl:bottom-[26px] xl:right-0 xl:w-auto xl:text-[163px]"
+          className="absolute bottom-[6px] w-full text-center text-[82px] font-black leading-none md:bottom-[18px] md:text-[177px] xl:bottom-[26px] xl:right-0 xl:w-auto xl:text-[163px]"
           style={{ fontFamily: "m-plus-1p-b" }}
         >
           總統大選
