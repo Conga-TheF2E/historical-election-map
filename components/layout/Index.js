@@ -1,43 +1,42 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { gsap } from "gsap/dist/gsap";
-
-function Index({
-  enteredSecondPage,
-  setEnteredSecondPage,
-  screenLevel,
+import { debounce } from "lodash";
+import {
+  resetScreenLevel,
+  toggleEnteredSecondPage,
+  backToFirstPage,
   setMapMode,
-  setSelectedCity,
-  setCityCode,
-  isMapLoading,
-}) {
-  const hamburgerHandler = () => {
-    if (screenLevel === "xl") return "/img/hamburger.svg";
-    return "/img/hamburger-white.svg";
-  };
-  const handleMapButtonClick = (mode = "common") => {
-    setEnteredSecondPage(true);
-    setMapMode(mode);
-  };
-  const getCandidateButton = (abbr, fullName, fullNameEn, mode) => (
-    <div
-      onClick={() => {
-        handleMapButtonClick(mode);
-      }}
-      className="duration-10 hover:bg-white-100 group relative cursor-pointer bg-gray900 p-2.5 text-gray100 duration-100 ease-linear hover:text-gray900 md:p-4 xl:px-[54px] xl:py-[14px] xl:pl-[44px]"
-    >
-      <div className="absolute left-6 top-[30px] hidden h-1 w-2.5 bg-gray100 group-hover:bg-gray900 xl:block"></div>
-      <div className="text-[25px] font-semibold leading-none md:text-[40px] xl:text-[35px]">
-        {screenLevel !== "xl" ? abbr : fullName}
-      </div>
-      <div
-        className="hidden text-lg xl:block"
-        style={{ fontFamily: "m-plus-1p-m" }}
-      >
-        {fullNameEn}
-      </div>
-    </div>
+} from "@/store/mapSlice";
+
+function Index() {
+  const dispatch = useDispatch();
+  const { enteredSecondPage, screenLevel, isLoading } = useSelector(
+    (state) => state.map
   );
+  const [voteDetail, setVoteDetail] = useState([]);
+
+  useLayoutEffect(() => {
+    if (!window) return;
+    dispatch(resetScreenLevel(window.innerWidth));
+  }, []);
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      dispatch(resetScreenLevel(window.innerWidth));
+    }, 200);
+    window.addEventListener("resize", handleResize);
+
+    fetch("/api/voteDetail?year=2020")
+      .then((res) => res.json())
+      .then((data) => setVoteDetail(data));
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     switch (screenLevel) {
       case "xl":
@@ -98,19 +97,42 @@ function Index({
         break;
     }
   }, [enteredSecondPage]);
-  const [voteDetail, setVoteDetail] = useState([]);
-  useEffect(() => {
-    fetch("/api/voteDetail?year=2020")
-      .then((res) => res.json())
-      .then((data) => setVoteDetail(data));
-  }, []);
+
+  const hamburgerHandler = () => {
+    if (screenLevel === "xl") return "/img/hamburger.svg";
+    return "/img/hamburger-white.svg";
+  };
+  const handleMapButtonClick = (mode = "common") => {
+    dispatch(toggleEnteredSecondPage(true));
+    dispatch(setMapMode(mode));
+  };
+  const getCandidateButton = (abbr, fullName, fullNameEn, mode) => (
+    <div
+      onClick={() => {
+        handleMapButtonClick(mode);
+      }}
+      className="duration-10 group relative cursor-pointer bg-gray900 p-2.5 text-gray100 duration-100 ease-linear hover:bg-white-100 hover:text-gray900 md:p-4 xl:px-[54px] xl:py-[14px] xl:pl-[44px]"
+    >
+      <div className="absolute left-6 top-[30px] hidden h-1 w-2.5 bg-gray100 group-hover:bg-gray900 xl:block"></div>
+      <div className="text-[25px] font-semibold leading-none md:text-[40px] xl:text-[35px]">
+        {screenLevel !== "xl" ? abbr : fullName}
+      </div>
+      <div
+        className="hidden text-lg xl:block"
+        style={{ fontFamily: "m-plus-1p-m" }}
+      >
+        {fullNameEn}
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div className="absolute  z-10 h-[46px] w-full bg-gray900 md:h-20 xl:hidden"></div>
       <div
         className={`relative mx-auto h-screen w-[348px] text-gray900 md:w-[768px] xl:w-[1320px] `}
       >
-        {isMapLoading && (
+        {isLoading && (
           <div className="absolute left-0 top-0 z-55 h-screen w-screen backdrop-blur-sm"></div>
         )}
         <h1
@@ -124,9 +146,7 @@ function Index({
           src={hamburgerHandler()}
           alt=""
           onClick={() => {
-            setEnteredSecondPage(false);
-            setSelectedCity(null);
-            setCityCode("");
+            dispatch(backToFirstPage());
           }}
         />
         <div
@@ -159,16 +179,16 @@ function Index({
         <div
           id="enter"
           className={`absolute left-1/2 top-1/2 z-60 -translate-x-1/2 -translate-y-1/2 cursor-pointer whitespace-nowrap blur-none ${
-            isMapLoading
+            isLoading
               ? "bg-white100 text-gray900"
               : "bg-gray900 text-gray100 xl:hover:bg-white100 xl:hover:text-gray900"
           }  px-8 py-3 font-GenSekiGothic-H text-base font-black duration-100 ease-linear md:px-[44px] md:py-6 md:text-[40px] `}
           onClick={() => {
-            if (isMapLoading) return;
+            if (isLoading) return;
             handleMapButtonClick("common");
           }}
         >
-          {isMapLoading ? "＞ Loading... ＜" : "＞ 進入開票地圖 ＜"}
+          {isLoading ? "＞ Loading... ＜" : "＞ 進入開票地圖 ＜"}
         </div>
 
         <div

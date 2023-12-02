@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function CandidatesModal({ mapMode, cityCode, screenLevel }) {
-  console.log(mapMode);
   return (
     <section
       className="absolute bottom-[50px] left-1/2 -translate-x-[350px] xl:bottom-1/2 xl:-translate-x-[594px] xl:translate-y-1/2"

@@ -1,10 +1,13 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import D3Map from "./D3Map.js";
 import CandidatesModal from "./CandidateModal.js";
 import Modal from "./Modal.js";
 import MapBg from "./MapBg.js";
 import ColorBar from "./ColorBar.js";
+
+import { setCityDetail, setSelectedCity } from "@/store/mapSlice";
 
 const mapPositionMode = {
   common: "top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 ",
@@ -13,18 +16,10 @@ const mapPositionMode = {
 };
 
 function Map(props) {
-  const {
-    screenLevel,
-    enteredSecondPage,
-    setIsMapLoading,
-    cityDetail,
-    setCityCode,
-    cityCode,
-    mapMode,
-    setMapMode,
-    selectedCity,
-    setSelectedCity,
-  } = props;
+  const dispatch = useDispatch();
+  const { screenLevel, enteredSecondPage, cityDetail, mapMode, selectedCity } =
+    useSelector((state) => state.map);
+
   const [changeCssPosition, setChangeCssPosition] = useState(false);
   const [transformPosition, setTransformPosition] = useState({
     dx: 20,
@@ -66,17 +61,16 @@ function Map(props) {
   }, []);
 
   useEffect(() => {
-    setSvgSize(svgSetting(screenLevel));
-  }, [screenLevel]);
+    fetch("/api/cityDetail?year=2020")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setCityDetail(data));
+      });
+  }, []);
 
   useEffect(() => {
-    if (!cityDetail) return;
-    cityDetail.forEach((city) => {
-      if (city.cityCode == cityCode) {
-        setSelectedCity(city);
-      }
-    });
-  }, [cityCode]);
+    setSvgSize(svgSetting(screenLevel));
+  }, [screenLevel]);
 
   useEffect(() => {
     // 進入地圖模式會回到原本的位置
@@ -110,8 +104,9 @@ function Map(props) {
   );
 
   const resetMap = () => {
-    setCityCode("");
-    setSelectedCity(null);
+    // setCityCode("");
+    // setSelectedCity(null);
+    dispatch(setSelectedCity(null));
     setTransformPosition({
       dx: 0,
       dy: 0,
@@ -152,22 +147,12 @@ function Map(props) {
             marginTop: `${svgSize.mt || 0}px`,
           }}
         >
-          <D3Map
-            svgSize={svgSize}
-            onCityClick={handleCityClick}
-            enteredSecondPage={enteredSecondPage}
-            cityDetail={cityDetail}
-            selectedCity={selectedCity}
-            cityCode={cityCode}
-            setCityCode={setCityCode}
-            mapMode={mapMode}
-            setIsMapLoading={setIsMapLoading}
-          />
+          <D3Map svgSize={svgSize} onCityClick={handleCityClick} />
 
           {!enteredSecondPage && (
             <img
               src="/img/map.svg"
-              className="scale-225 -translate-x-1/4 translate-y-1/2 md:translate-x-0 md:translate-y-1/4 md:scale-150 lg:translate-y-0 lg:scale-100"
+              className="-translate-x-1/4 translate-y-1/2 scale-225 md:translate-x-0 md:translate-y-1/4 md:scale-150 lg:translate-y-0 lg:scale-100"
               alt="fake map"
             />
           )}
@@ -176,11 +161,17 @@ function Map(props) {
       {enteredSecondPage && (
         <CandidatesModal
           mapMode={mapMode}
-          cityCode={cityCode}
+          selectedCity={selectedCity}
           screenLevel={screenLevel}
         />
       )}
-      {selectedCity && <Modal {...props} resetMap={resetMap} />}
+      {selectedCity && (
+        <Modal
+          selectedCity={selectedCity}
+          resetMap={resetMap}
+          screenLevel={screenLevel}
+        />
+      )}
       <ColorBar
         mapMode={mapMode}
         selectedCity={selectedCity}

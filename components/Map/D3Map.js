@@ -1,9 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 
 import cityCenter from "@/public/map/city-center.json";
+import { setSelectedCity, toggleIsLoading } from "@/store/mapSlice";
 
 const getMercatorScale = () => {
   if (typeof window === "undefined") return 0;
@@ -69,17 +71,12 @@ function returnColor(percent, party, mode = "common") {
   return `fill-${color}-${level}`;
 }
 
-export default React.memo(function Map({
-  svgSize,
-  onCityClick,
-  enteredSecondPage,
-  cityDetail,
-  cityCode,
-  setCityCode,
-  mapMode,
-  setIsMapLoading,
-  selectedCity,
-}) {
+export default React.memo(function Map({ svgSize, onCityClick }) {
+  const { enteredSecondPage, cityDetail, mapMode, selectedCity } = useSelector(
+    (state) => state.map
+  );
+
+  const dispatch = useDispatch();
   // 各城鎮的顏色
   const [cityColor, setCityColor] = useState(null);
   const [tempMapMode, setTempMapMode] = useState("common");
@@ -88,7 +85,8 @@ export default React.memo(function Map({
     d3.transition().on("end", function () {
       // 需多等一段時間，否則會有閃爍的感覺
       setTimeout(() => {
-        setIsMapLoading(false);
+        // setIsMapLoading(false);
+        dispatch(toggleIsLoading(false));
       }, 300);
     });
   }, []);
@@ -177,7 +175,11 @@ export default React.memo(function Map({
           const dy = isMobile ? -(y - height / 2) * scale - 90 : 0; // 多向上移動 50px
 
           onCityClick({ dx, dy, scale });
-          setCityCode(d.properties.COUNTYID);
+          dispatch(
+            setSelectedCity(
+              cityDetail.find((city) => city.cityCode === d.properties.COUNTYID)
+            )
+          );
 
           // 修改除被点击路径外其他路径元素的类
 
