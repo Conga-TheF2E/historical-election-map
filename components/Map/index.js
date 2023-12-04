@@ -15,7 +15,7 @@ const mapPositionMode = {
   md: "top-1/2 right-0 translate-x-0 -translate-y-1/2 ",
 };
 
-function Map(props) {
+function Map() {
   const dispatch = useDispatch();
   const { screenLevel, enteredSecondPage, cityDetail, mapMode, selectedCity } =
     useSelector((state) => state.map);
@@ -104,8 +104,6 @@ function Map(props) {
   );
 
   const resetMap = () => {
-    // setCityCode("");
-    // setSelectedCity(null);
     dispatch(setSelectedCity(null));
     setTransformPosition({
       dx: 0,
@@ -158,6 +156,7 @@ function Map(props) {
           )}
         </section>
       </div>
+      {/* FIXME: 明明裡面會寫出現條件這編應該不需要 */}
       {enteredSecondPage && (
         <CandidatesModal
           mapMode={mapMode}
@@ -165,6 +164,7 @@ function Map(props) {
           screenLevel={screenLevel}
         />
       )}
+      {/* FIXME: 明明裡面會寫出現條件這編應該不需要 */}
       {selectedCity && (
         <Modal
           selectedCity={selectedCity}

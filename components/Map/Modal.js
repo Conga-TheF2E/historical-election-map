@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 function Modal(props) {
   const { screenLevel, selectedCity, resetMap } = props;
+  // FIXME: 拼字錯誤
   const [showPrivous, setShowPrivous] = useState(false);
   return (
+    // TODO: 檢查是否還有其他地方使用 style: display: none 的方式隱藏元件
     selectedCity && (
       <div className="absolute bottom-0  flex w-full flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900 md:bottom-[50px] md:left-1/2 md:w-auto md:-translate-x-[332px] xl:bottom-1/2 xl:-translate-x-[594px] xl:translate-y-1/2">
         <div
@@ -18,6 +20,7 @@ function Modal(props) {
           className=" mt-[5px] text-sm"
           style={{
             display:
+              // FIXME: 感覺能用更好的方式處理
               screenLevel != "sm" ? "block" : !showPrivous ? "block" : "none",
           }}
         >
@@ -27,11 +30,13 @@ function Modal(props) {
           className="mt-[18px] flex w-full items-center justify-between"
           style={{
             display:
+              // FIXME: 感覺能用更好的方式處理
               screenLevel != "sm" ? "flex" : !showPrivous ? "flex" : "none",
           }}
         >
           <div className="bg-green300 p-1 text-base leading-none">蔡</div>
           <div className=" font-GenSekiGothic-M font-medium">
+            {/* TODO: 請用 ["民主進步黨"] 的方式處理中文，且感覺也許能拆成小元件處理這三塊 */}
             {selectedCity.voteDetail.民主進步黨.percentage}
             {"% "}
             <span className="text-green300">
@@ -43,6 +48,7 @@ function Modal(props) {
           className="mt-[18px] flex w-full items-center justify-between"
           style={{
             display:
+              // FIXME: 感覺能用更好的方式處理
               screenLevel != "sm" ? "flex" : !showPrivous ? "flex" : "none",
           }}
         >
@@ -59,6 +65,7 @@ function Modal(props) {
           className="mt-[18px] flex w-full items-center justify-between"
           style={{
             display:
+              // FIXME: 感覺能用更好的方式處理
               screenLevel != "sm" ? "flex" : !showPrivous ? "flex" : "none",
           }}
         >

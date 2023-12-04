@@ -84,8 +84,8 @@ export default React.memo(function Map({ svgSize, onCityClick }) {
   useEffect(() => {
     d3.transition().on("end", function () {
       // 需多等一段時間，否則會有閃爍的感覺
+      // FIXME: 沒有更好得解法嗎？
       setTimeout(() => {
-        // setIsMapLoading(false);
         dispatch(toggleIsLoading(false));
       }, 300);
     });
@@ -140,6 +140,7 @@ export default React.memo(function Map({ svgSize, onCityClick }) {
 
     const topoJson = "/map/topo.json";
 
+    // FIXME: d3.json 應該可以透過 setTopoJson 的方式儲存來避免重複載入
     d3.json(topoJson).then((data) => {
       const countyGeometries = topojson.feature(
         data,
@@ -153,6 +154,7 @@ export default React.memo(function Map({ svgSize, onCityClick }) {
       const countyPaths = g.selectAll("path").data(countyGeometries.features);
 
       function pathClass(cityID) {
+        // FIXME: 怎麼避免所有動畫都一起執行又不延遲呢？
         return `${cityColor[cityID]} hover:opacity-50 will-change-fill ease-out cursor-pointer transition delay-200 during-150`;
       }
       countyPaths
@@ -246,6 +248,7 @@ export default React.memo(function Map({ svgSize, onCityClick }) {
       <div
         className="inline-block"
         id="map"
+        // TODO: 這邊的 style 應該可以用 Tailwind 的方式處理
         style={{
           visibility: enteredSecondPage ? "visible" : "hidden",
           position: enteredSecondPage ? "relative" : "absolute",
