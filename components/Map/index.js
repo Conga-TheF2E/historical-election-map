@@ -156,22 +156,17 @@ function Map() {
           )}
         </section>
       </div>
-      {/* FIXME: 明明裡面會寫出現條件這編應該不需要 */}
-      {enteredSecondPage && (
-        <CandidatesModal
-          mapMode={mapMode}
-          selectedCity={selectedCity}
-          screenLevel={screenLevel}
-        />
-      )}
-      {/* FIXME: 明明裡面會寫出現條件這編應該不需要 */}
-      {selectedCity && (
-        <Modal
-          selectedCity={selectedCity}
-          resetMap={resetMap}
-          screenLevel={screenLevel}
-        />
-      )}
+      <CandidatesModal
+        enteredSecondPage={enteredSecondPage}
+        mapMode={mapMode}
+        selectedCity={selectedCity}
+        screenLevel={screenLevel}
+      />
+      <Modal
+        selectedCity={selectedCity}
+        resetMap={resetMap}
+        screenLevel={screenLevel}
+      />
       <ColorBar
         mapMode={mapMode}
         selectedCity={selectedCity}

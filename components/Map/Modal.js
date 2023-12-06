@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 function Modal(props) {
   const { screenLevel, selectedCity, resetMap } = props;
-  // FIXME: 拼字錯誤
-  const [showPrivous, setShowPrivous] = useState(false);
+  const [showPrevious, setshowPrevious] = useState(false);
   return (
-    // TODO: 檢查是否還有其他地方使用 style: display: none 的方式隱藏元件
     selectedCity && (
       <div className="absolute bottom-0  flex w-full flex-col items-center bg-gray100 px-7 py-[30px] font-GenSekiGothic-R text-gray900 md:bottom-[50px] md:left-1/2 md:w-auto md:-translate-x-[332px] xl:bottom-1/2 xl:-translate-x-[594px] xl:translate-y-1/2">
         <div
@@ -19,9 +17,7 @@ function Modal(props) {
         <div
           className=" mt-[5px] text-sm"
           style={{
-            display:
-              // FIXME: 感覺能用更好的方式處理
-              screenLevel != "sm" ? "block" : !showPrivous ? "block" : "none",
+            display: screenLevel != "sm" || !showPrevious ? "block" : "none",
           }}
         >
           {selectedCity.voteDetail.total}票
@@ -29,9 +25,7 @@ function Modal(props) {
         <div
           className="mt-[18px] flex w-full items-center justify-between"
           style={{
-            display:
-              // FIXME: 感覺能用更好的方式處理
-              screenLevel != "sm" ? "flex" : !showPrivous ? "flex" : "none",
+            display: screenLevel != "sm" || !showPrevious ? "flex" : "none",
           }}
         >
           <div className="bg-green300 p-1 text-base leading-none">蔡</div>
@@ -47,9 +41,7 @@ function Modal(props) {
         <div
           className="mt-[18px] flex w-full items-center justify-between"
           style={{
-            display:
-              // FIXME: 感覺能用更好的方式處理
-              screenLevel != "sm" ? "flex" : !showPrivous ? "flex" : "none",
+            display: screenLevel != "sm" || !showPrevious ? "flex" : "none",
           }}
         >
           <div className="bg-blue300 p-1 text-base leading-none">韓</div>
@@ -64,9 +56,7 @@ function Modal(props) {
         <div
           className="mt-[18px] flex w-full items-center justify-between"
           style={{
-            display:
-              // FIXME: 感覺能用更好的方式處理
-              screenLevel != "sm" ? "flex" : !showPrivous ? "flex" : "none",
+            display: screenLevel != "sm" || !showPrevious ? "flex" : "none",
           }}
         >
           <div className="bg-orange500 p-1 text-base leading-none">宋</div>
@@ -89,7 +79,7 @@ function Modal(props) {
         <div
           className="mt-[13px]  justify-between gap-5"
           style={{
-            display: screenLevel == "sm" && !showPrivous ? "none" : "flex",
+            display: screenLevel != "sm" ? "flex" : "none",
             marginBottom: screenLevel == "sm" ? "42px" : "0px",
           }}
         >
@@ -110,14 +100,14 @@ function Modal(props) {
           className=" absolute right-[18px] top-[-50px] p-2.5 font-GenSekiGothic-B font-bold leading-none"
           style={{
             display: screenLevel != "sm" ? "none" : "block",
-            backgroundColor: showPrivous ? "#D3D3D3" : "#282828",
-            color: showPrivous ? "#282828" : "#D3D3D3",
+            backgroundColor: showPrevious ? "#D3D3D3" : "#282828",
+            color: showPrevious ? "#282828" : "#D3D3D3",
           }}
           onClick={() => {
-            setShowPrivous(!showPrivous);
+            setshowPrevious(!showPrevious);
           }}
         >
-          {showPrivous ? "本屆戰況" : "過往戰況"}
+          {showPrevious ? "本屆戰況" : "過往戰況"}
         </div>
       </div>
     )
